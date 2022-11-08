@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>06_audio.html</title>
+    </head>
+    <body>
+
+        <div style="text-align: center;">
+            <h3>음악목록</h3>
+            <img src="../../music/gangnamstyle.jpg" id="poster" width="300px" height="250px">
+            <br><br>
+            <audio src="../../music/gangnamstyle.mp3" id="audio1" controls></audio>
+        </div>
+        <hr>
+
+        <div style="margin: auto; width: 50%;">
+            <ol>
+                <!-- 아래 앵커태그에서 자바스크립트에 접근하여 loadMusic()이라는 함수를 호출한다 -->
+                <!-- <a href="javascript:함수()"></a>                                           -->
+                <!-- loadMusic('이미지파일이름', '오디오파일이름') 매개변수를 직접 준다          -->
+                <li><a href="javascript:loadMusic('../../music/genie.jpg', '../../music/genie.mp3')">소원을 말해봐</a></li>
+                <li><a href="javascript:loadMusic('../../music/sheis.jpg', '../../music/sheis.mp3')">그녀가 처음 울던날</a></li>
+                <li><a href="javascript:loadMusic('../../music/candy.jpg', '../../music/candy.mp3')">내귀에 캔디</a></li>
+                <li><a href="javascript:loadMusic('../../music/gangnamstyle.jpg', '../../music/gangnamstyle.mp3')">강남스타일</a></li>
+            </ol>
+        </div>
+
+        <script>
+            function loadMusic(jpg, mp3){
+                //alert("#"+jpg+"#");
+                //alert("#"+mp3+"#");
+                let poster=document.getElementById("poster");   //본문에 있는 id=poster의 모든 값을 담는다
+                let audio1=document.getElementById("audio1");   //본문에 있는 id=audio의 모든 값을 담는다
+
+                poster.src=jpg;     //id=poster src에 접근해서 jpg 매개변수값을 넣는다
+                audio1.src=mp3;     //id=audio1 src에 접근해서 mp3 매개변수값을 넣는다
+
+                audio1.play();      //id=audio1을 재생해라
+            }//loadMusic() end
+
+
+
+
+
+            
+        </script>
+
+
+
+    </body>
+</html>

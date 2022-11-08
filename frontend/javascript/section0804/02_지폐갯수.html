@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_지폐갯수.html</title>
+        <style>
+            #demo{
+                width: 100px;
+                height: 150px;
+                background-color: beige;
+            }
+
+            #demoT{
+                width: 100px;
+                height: 150px;
+                background-color: lavenderblush;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div id="demo"></div>
+        <div id="demoT"></div>
+
+        <script>
+            //연습) 각 지폐갯수를 구해서 표작성해서 본문 id=demo에 출력하시오
+            
+            
+/* 내가 푼거 */           
+           let money=54320;                        // 원금
+           let result="";                          // HTML로 출력할 변수 선언
+
+           result=result + "<table border='1'";
+           result=result + "<tr>";
+           result=result + "   <th>만원</th>";
+           result=result + "   <td>" + parseInt(money/10000) + "장</td>";
+           result=result + "<tr>";
+           result=result + "<tr>";
+           result=result + "   <th>천원</th>";
+           result=result + "   <td>" + parseInt(money%10000/1000) + "장</td>";
+           result=result + "<tr>";
+           result=result + "<tr>";
+           result=result + "   <th>백원</th>";
+           result=result + "   <td>" + parseInt(money%1000/100) + "장</td>";
+           result=result + "<tr>";
+           result=result + "<tr>";
+           result=result + "   <th>십원</th>";
+           result=result + "   <td>" + parseInt(money%100/10) + "장</td>";
+           result=result + "<tr>";
+           result=result + "</table>";
+           
+           document.getElementById("demo").innerHTML=result;
+           
+/* 
+        ● 지폐단위당 변수선언
+            let money=54320;                        // 원금
+            let result="";                          // HTML로 출력할 변수 선언
+
+            let m10000=parseInt(money/10000);       // m10000 만원지폐
+            let m1000=parseInt(money%10000/1000);   // m1000  천원지폐
+            let m100=parseInt(money%1000/100);      // m100   백원지폐
+            let m10=parseInt(money%100/10);         // m10    천원지폐
+
+        ● 선언한 변수로 출력
+            result=result + "<table border='1'";
+            result=result + "<tr>";
+            result=result + "   <th>만원</th>";
+            result=result + "   <td>" + m10000 + "장</td>";
+            result=result + "<tr>";
+            result=result + "<tr>";
+            result=result + "   <th>천원</th>";
+            result=result + "   <td>" + m1000 + "장</td>";
+            result=result + "<tr>";
+            result=result + "<tr>";
+            result=result + "   <th>백원</th>";
+            result=result + "   <td>" + m100 + "장</td>";
+            result=result + "<tr>";
+            result=result + "<tr>";
+            result=result + "   <th>십원</th>";
+            result=result + "   <td>" + m10 + "장</td>";
+            result=result + "<tr>";
+            result=result + "</table>";
+
+            document.getElementById("demo").innerHTML=result;
+ */
+
+ /* --강사님 풀이-- */
+          //let money=54320;
+
+            let m=parseInt(money/10000);        // 5
+            money=money%10000;                  // 4320  money%=10000;
+
+            let c=parseInt(money/1000);         // 4
+            money=money%1000;                   // 320
+
+            let b=parseInt(money/100);          // 3
+            money=money%100;                    // 20
+
+            let s=parseInt(money/10);           // 2
+
+            let resultT="";                      // 결과값
+          //result=result+"<table border='1'>"; // result+="";
+            resultT+="<table border='1'>";
+            resultT+="<tr>";
+            resultT+="   <th>만원</th>";
+            resultT+="   <td>" + m + "장</td>";
+            resultT+="</tr>";
+            resultT+="<tr>";
+            resultT+="   <th>천원</th>";
+            resultT+="   <td>" + c + "장</td>";
+            resultT+="</tr>";
+            resultT+="<tr>";
+            resultT+="   <th>백원</th>";
+            resultT+="   <td>" + b + "장</td>";
+            resultT+="</tr>";
+            resultT+="<tr>";
+            resultT+="   <th>십원</th>";
+            resultT+="   <td>" + s + "장</td>";
+            resultT+="</tr>";
+            resultT+="</table>";
+
+            // 본문 id=demoT에 출력
+            document.getElementById("demoT").innerHTML=resultT;
+
+
+        </script>
+
+
+
+    </body>
+</html>

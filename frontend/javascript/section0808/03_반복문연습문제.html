@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_for연습문제.html</title>
+    </head>
+    <body>
+
+        <h3>for연습문제</h3>
+        
+        <script>
+        //문1) 아래와 같이 출력하시오
+        /*
+            12345
+            23456
+            34567
+            45678
+            56789
+        */
+
+
+/* --내 답안--
+        for(let i=1; i<=5; i++){
+            document.write(i);            
+            for(let j=i+1; j<=i+4; j++){
+                document.write(j);
+            }
+            document.write("<br>");
+        }
+        document.write("<hr><hr>");
+ */
+
+        //풀이
+        for(let a=0; a<5; a=a+1){
+            for(let b=a+1; b<=a+5; b=b+1){
+                document.write(b);
+            }//for end
+            document.write("<br>");
+        }//for end
+        /*
+            a=0  0<5
+                     b=0+1  1<=0+5
+                            2<=0+5
+                            3<=0+5
+                            4<=0+5
+                            5<=0+5
+            a=1  1<5
+                     b=1+1  2<=1+5
+                            3<=1+5
+                            4<=1+5
+                            5<=1+5
+                            6<=1+5
+        */
+        document.write("<hr><hr>");
+
+
+
+
+        //문2)아래 그림과 같이 출력하시오
+        /*
+        @★★★
+        ★@★★
+        ★★@★
+        ★★★@            
+        */
+        
+/* --내 답안--
+        for(let i=1; i<=4; i++){
+            for(let a=1; a<i; a++){
+                document.write("★");
+            }
+            document.write("@");
+            for(let b=4; b>i; b--){
+                document.write("★");
+            }
+            document.write("<br>");
+        }
+        document.write("<hr><hr>");
+ */
+
+        //풀이
+        for(let a=1; a<=4; a++){
+            for(let b=1; b<=4; b++){
+                if(a==b){
+                    document.write("@");
+                }else{
+                    document.write("★");
+                }//if end
+            }//for end
+            document.write("<br>");
+        }//for end
+        /*
+            a=1  1<=4
+                      b=1  1<=4  {if(1==1) @}
+                           2<=4  {if(1==2) else ★}
+                           3<=4  {if(1==3) else ★}
+                           4<=4  {if(1==4) else ★}
+                 2<=4
+                      b=1  1<=4  {if(2==1) else ★}
+                           2<=4  {if(2==2) @}
+                           3<=4  {if(2==3) else ★}
+                           4<=4  {if(2==3) else ★}
+        */
+        document.write("<hr><hr>");
+
+
+
+        //문3) 아래와 같이 누적의 합을 출력하시오 (회전수 증가)
+        /*
+        1+ ... +10=55
+        1+ ... +20=210
+        1+ ... +30=465
+
+        1+ ... +90=
+        1+ ... +100=5050            
+        */
+
+/* --내 답안--
+        let hap=0;
+        for(let a=10; a<=100; a=a+10){
+            hap=0;
+            for(let b=1; b<=a; b=b+1){
+                hap+=b;
+                //document.write(b);
+                //document.write("+");
+            }
+            document.write("1+ ... +"+a+"="+hap+"<br>");
+        }
+        document.write("<hr><hr>");
+ */
+
+        //풀이
+        let sum=0;                              //누적의 합
+        for(let a=10; a<=100; a=a+10){
+            for(let b=1; b<=a; b=b+1){
+                sum=sum+b;
+            }//for end
+            document.write("1+...+"+a+"="+sum);
+            document.write("<br>");
+            sum=0;                              //초기화
+        }//for end
+        /*
+            a=10
+                  b=1  1<=10  sum=0+1
+                       2<=10  sum=1+2
+                       3<=10  sum=3+3
+                        ...
+                       10<=10 sum=45+10
+            a=20
+                  b=1  1<=10  sum=0+1
+                       2<=10  sum=1+2
+                       3<=10  sum=3+3
+                        ...
+                       20<=20 sum=190+20
+        */
+        document.write("<hr><hr>");
+
+
+
+        //문4) 1~100사이 중에서 짝수의 합, 홀수의 합을 각각 구하시오 (누적)
+
+        let even=0;                     //짝수의 합
+        let odd=0;                      //홀수의 합
+
+        /* 1)
+        for(let i=1; i<=100; i++){
+            if(i%2==0){
+                even+=i;
+                //document.write(i+"짝수합:"+even+"<br>");
+            }else{
+                odd+=i;
+                //document.write(i+"홀수합:"+odd+"<br>");
+            }
+        }//for end
+        */
+       
+        // 2)
+        let flag=false;
+        for(let a=1; a<=100; a++){
+            if(flag){
+                even+=a;        //짝수 변수
+                flag=false;
+            }else{
+                odd+=a;         //홀수 변수
+                flag=true;
+            }//if end
+        }//for end
+        /*
+            a=1  1<=100
+                        if(false)
+                        else {flag=true}
+                 2<=100
+                        if(true) {flag=false}
+                 3<=100
+                        if(false)
+                        else {flag=true}
+                 4<=100
+                        if(true) {flag=false}
+       */       
+       document.write("짝수합: "+even+" 홀수합: "+odd);
+       document.write("<hr><hr>");
+
+
+        //문5) 다음식의 결과를 구하시오   
+        //    1 - 2 + 3 - 4 + 5 ... -100 = ?
+
+/* --내답안--
+        let coin=true;
+        let x=0;
+        for(let a=1; a<=100; a++){
+            if(coin){
+                x+=a;         //홀수 항 덧셈
+                document.write(" + "+a);
+                coin=false;
+            }else{
+                x-=a;         //짝수 항 뺄셈
+                document.write(" - "+a);
+                coin=true;
+            }//if end
+        }//for end
+        document.write(" = "+x);
+        document.write("<hr><hr>");
+ */
+        //풀이
+        let hap=0;
+        flag=false;
+        for(let a=1; a<=100; a=a+1){
+            if(flag){
+                hap=hap-a;
+                flag=false;
+            }else{
+                hap=hap+a;
+                flag=true;
+            }//if end
+        }//for end
+        document.write("1 - 2 + 3 - 4 + 5 ... -100 = "+hap);
+        document.write("<hr><hr>");
+
+
+        //문6) 2g, 3g, 5g짜리 추가 각각 5개씩 있을때,
+        //     세가지의 추의 조합으로 무게가 40~45사이일 때
+        //     각 추의 갯수와 무게를 출력하는 프로그램
+        /*
+                출력결과
+                2g  3g  5g   total
+                1   5   5    42
+                2   4   5    41
+                2   5   5    44
+        */
+
+        let g2=0; //2g 추
+        let g3=0; //3g 추
+        let g5=0; //5g 추
+        let total=0;
+
+        document.write("출력결과<br>2g&nbsp;3g&nbsp;5g&nbsp;total<br>");    //윗 두줄
+        for(g2=0; g2<=5; g2++){                 //2그램
+            for(g3=0; g3<=5; g3++){             //3그램
+                for(g5=0; g5<=5; g5++){         //5그램
+                    total=g2*2+g3*3+g5*5;
+                    if(total>=40&&total<=45){
+                        document.write(g2+"&nbsp;&nbsp;&nbsp;"+g3+"&nbsp;&nbsp;&nbsp;"+g5+"&nbsp;&nbsp;&nbsp;"+total+"<br>");
+                    }
+                }//for end
+                g5=0;
+            }//for end
+            g3=0;
+            total=0;
+        }//for end
+
+
+
+
+       
+        </script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_Date객체.html</title>
+        <style>
+            #clock{
+                background-color: aqua;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <h3>Date객체</h3>
+        현재날짜 <div id="clock"></div>
+        
+        <script>
+            //참조 https://www.w3schools.com/js/js_dates.asp
+            //Date 날짜 관련 내장 객체
+            
+        const d=new Date();                         //const 상수화 :값을 못바꾼다.
+                                                    //시스템의 현재 날짜 정보 가져오기
+
+        document.write(d.getFullYear()+"<br>");     //2022  년
+        document.write(d.getMonth()+"<br>");        //7     월 Bad (0월부터 세기때문에 +1해서 출력)
+        document.write(d.getMonth()+1+"<br>");      //8     월 Good
+        document.write(d.getDate()+"<br>");         //10    일
+        
+        document.write(d.getHours()+"<br>");        //14    시
+        document.write(d.getMinutes()+"<br>");      //57    분
+        document.write(d.getSeconds()+"<br>");      //5     초
+
+        const days=["일", "월", "화", "수", "목", "금", "토"];
+        document.write(days[d.getDay()]+"<br>");    //수    요일
+        document.write("<hr>");
+        
+
+        //문) 날짜변수d값을 이용해서 날짜 정보를 아래와 같이 구성해서 id=clock에 출력하시오
+        //    2022.08.10 (수) pm 3:00:42
+        let today="";
+        today += d.getFullYear() + ".";         //2022.
+        if(d.getMonth()+1<10)today += "0";
+        today += (d.getMonth()+1)+".";          //2022.08.
+        if(d.getDate()<10)today += "0";
+        today += d.getDate();                   //2022.08.10
+        switch(d.getDay()){
+            case 0: today+=" (일) "; break;
+            case 1: today+=" (월) "; break;
+            case 2: today+=" (화) "; break;
+            case 3: today+=" (수) "; break;
+            case 4: today+=" (목) "; break;
+            case 5: today+=" (금) "; break;
+            case 6: today+=" (토) "; break;
+        }                                       //2022.08.10 (수)         
+        if(d.getHours()<12){today += "am "}else{today += "pm "};                                //2022.08.10 (수) pm 
+        if(d.getHours()<13){today += d.getHours()+ ":"}else{today += (d.getHours()-12)+ ":"};   //2022.08.10 (수) pm 4:
+        if(d.getMinutes()<10)today += "0";      
+        today += d.getMinutes()+ ":";           //2022.08.10 (수) pm 4:17:
+        if(d.getSeconds()<10)today += "0";
+        today += d.getSeconds();                //2022.08.10 (수) pm 4:17:20
+
+        document.getElementById("clock").innerText=today;
+
+        </script>
+
+
+
+    </body>
+</html>

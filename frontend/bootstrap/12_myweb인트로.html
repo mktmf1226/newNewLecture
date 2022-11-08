@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>12_myweb인트로.html</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- moment.js import -->
+    <script src="moment-with-locales.js"></script>
+    <!-- layout.css import -->
+    <link rel="stylesheet" href="layout.css">
+    <!-- d3 import -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- 나눔고딕 -->
+    <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+        --body {font:14px 'Nanum Gothic',dotum, sans-serif; margin:0;}
+    </style>
+    <!-- 이미지 스크롤 -->
+    <style>
+        #mydiv{
+            position: relative;
+            left: 100px;
+            top: 10px;
+            width: 285px; /*9)영역크기 줄이기*/
+            height: 100px;
+            background-color: white;    /*11)배경색 흰색으로 바꾸기*/
+            overflow: hidden;             /*12)영역 밖의 내용은 숨기기*/
+        }
+    </style>
+    <!-- 아날로그 시계 -->
+    <style>
+        #wrap{
+            width:600px;
+            height:600px;
+            position: relative;        
+            left:50%;
+            top:50%;
+            margin:-300px 0 0 -300px;
+            font-family: bon,sans-serif;
+        }
+
+        #wrap h3{
+            height:80px;
+            font-size:50px;
+            text-align: center;
+            line-height: 80px;
+            font-weight: 700;
+            color:#424242;
+        }
+
+        #clock{
+            width: 500px;
+            height: 500px;
+            background: url(../images/Clock-face.png);
+            background-size: 100% 100%;
+            margin:auto; /*가운데정렬*/
+            position: relative;
+            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        #hour { background: url(../images/hour_hand.png);   }
+        #min  { background: url(../images/minute_hand.png); }
+        #sec  { background: url(../images/second_hand.png); }
+
+        .hand {width: 500px; height: 500px; position: absolute; left: 0; top: 0;}
+    </style>
+    <!-- 이미지 스크롤 -->
+    <script>
+        //1)스크롤하고자 하는 이미지를 전역변수에 저장
+        let ctnt=[]; //배열선언
+        ctnt[0]="<img src='../images/angel.png' width='85'>";
+        ctnt[1]="<img src='../images/devil.png' width='85'>";
+        ctnt[2]="<img src='../images/smile.png' width='85'>";
+        ctnt[3]="<img src='../images/angel.png' width='85'>";
+        ctnt[4]="<img src='../images/devil.png' width='85'>";
+        ctnt[5]="<img src='../images/smile.png' width='85'>";
+        ctnt[6]="<img src='../images/angel.png' width='85'>";
+        ctnt[7]="<img src='../images/devil.png' width='85'>";
+
+        //2) 1)에서 준비한 이미지를 id=mydiv에 배치하기
+        function start(){
+            for(let i=0;i<ctnt.length;i++){
+                document.write("<div id='area");
+                document.write(i);
+                document.write("' style='position:absolute; top:0; left:");
+                document.write(90*i);
+                document.write("px;'>");
+                document.write(ctnt[i]);
+                document.write("</div>");
+            }
+            //3)3초 후에 scroll함수 1번 호출
+            setTimeout(scroll, 3000);
+        }//start end
+
+        function scroll(){
+            //alert("scroll함수 호출");
+            //alert(document.getElementById("area0"));              //[object HTMLDivElement]
+            //alert(document.getElementById("area0").style);        //[object CSSStyleDeclaration]
+            //alert(document.getElementById("area0").style.left);   //0px
+
+            //5)id=area0의 스타일을 가져와서 왼쪽여백값을 -10px만큼 줄이기
+            //let tmp=document.getElementById("area0").style;
+            //tmp.left=parseInt(tmp.left)-10+"px";
+
+            for(let i=0;i<ctnt.length;i++){
+                let tmp=document.getElementById("area"+i).style;
+                tmp.left=parseInt(tmp.left)-10+"px";
+
+                //7)이미지 순환하기 위해서 이미지를 다시 배치                    
+                if(parseInt(tmp.left)<=-90){    //id=mydiv영역을 벗어났는지?
+                    tmp.left=90*(ctnt.length-1)+"px";
+                }//if end
+            }//for end
+
+            //6)0.5초 후 scroll함수 호출
+            timerClose=setTimeout(scroll, 500);    //0.5초
+        }//scroll() end
+
+        //13) 6)의 시간을 해제
+        var timerClose; //전역변수
+
+        function killtime(){
+            clearTimeout(timerClose);
+        }//killtime() end
+
+        function playtime(){
+            setTimeout(scroll, 500);
+        }//playtime() end
+    </script>
+    <!-- 디지털 시계 -->
+    <script>
+        function showtimeclock(){
+            const d=new Date();                     //const 상수화. 값을 못바꾼다
+            let today="";
+            today += d.getFullYear() + ".";         //2022.
+            if(d.getMonth()+1<10)today += "0";
+            today += (d.getMonth()+1)+".";          //2022.08.
+            if(d.getDate()<10)today += "0";
+            today += d.getDate();                   //2022.08.10
+            switch(d.getDay()){
+                case 0: today+=" (일) "; break;
+                case 1: today+=" (월) "; break;
+                case 2: today+=" (화) "; break;
+                case 3: today+=" (수) "; break;
+                case 4: today+=" (목) "; break;
+                case 5: today+=" (금) "; break;
+                case 6: today+=" (토) "; break;
+            }                                       //2022.08.10 (수)         
+            if(d.getHours()<12){today += "am "}else{today += "pm "};                                //2022.08.10 (수) pm 
+            if(d.getHours()<13){today += d.getHours()+ ":"}else{today += (d.getHours()-12)+ ":"};   //2022.08.10 (수) pm 4:
+            if(d.getMinutes()<10)today += "0";      
+            today += d.getMinutes()+ ":";           //2022.08.10 (수) pm 4:17:
+            if(d.getSeconds()<10)today += "0";
+            today += d.getSeconds();                //2022.08.10 (수) pm 4:17:20
+
+            document.getElementById("digitclock").innerText=today;
+            timer=setTimeout(showtimeclock, 1000);             //1초 후에 showtimeclock 함수를 호출
+        }//showtimeclock() end
+
+        let timer; //전역변수
+
+        function killtimeclock(){
+            clearTimeout(timer);    //시간해제
+        }//killtimeclock() end
+    </script>
+    <!-- 아날로그 시계 -->
+    <script>
+        showtime(); //최초 함수 호출
+
+        function showtime(){
+            //alert();
+            let now =moment();     //moment.js 시작
+            let hour=now.hour();   //16
+            let min =now.minute(); //44
+            let sec =now.second(); //20
+
+            // 360도/60초
+            $("#sec") .css("transform", "rotate("+(sec*6)+"deg)");  
+            // 360도/60분   +  6도/60초
+            $("#min") .css("transform", "rotate("+((min*6)+(sec*0.1))+"deg)");  
+            // 360도/12시간 + 30도/60분
+            $("#hour").css("transform", "rotate("+((hour*30)+(min*0.5))+"deg)");  
+        }//showtime() end
+
+        //5) 1초마다 주기적 또는 반복적으로 함수 호출
+        setInterval(showtime, 1000);
+    </script>
+    <!-- collision detection -->
+    <script>
+        var width = 960,
+            height = 500;
+        
+        var nodes = d3.range(200).map(function() { return {radius: Math.random() * 12 + 4}; }),
+            root = nodes[0],
+            color = d3.scale.category10();
+        
+        root.radius = 0;
+        root.fixed = true;
+        
+        var force = d3.layout.force()
+            .gravity(0.05)
+            .charge(function(d, i) { return i ? 0 : -2000; })
+            .nodes(nodes)
+            .size([width, height]);
+        
+        force.start();
+        
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        
+        svg.selectAll("circle")
+            .data(nodes.slice(1))
+          .enter().append("circle")
+            .attr("r", function(d) { return d.radius; })
+            .style("fill", function(d, i) { return color(i % 3); });
+        
+        force.on("tick", function(e) {
+          var q = d3.geom.quadtree(nodes),
+              i = 0,
+              n = nodes.length;
+        
+          while (++i < n) q.visit(collide(nodes[i]));
+        
+          svg.selectAll("circle")
+              .attr("cx", function(d) { return d.x; })
+              .attr("cy", function(d) { return d.y; });
+        });
+        
+        svg.on("mousemove", function() {
+          var p1 = d3.mouse(this);
+          root.px = p1[0];
+          root.py = p1[1];
+          force.resume();
+        });
+        
+        function collide(node) {
+          var r = node.radius + 16,
+              nx1 = node.x - r,
+              nx2 = node.x + r,
+              ny1 = node.y - r,
+              ny2 = node.y + r;
+          return function(quad, x1, y1, x2, y2) {
+            if (quad.point && (quad.point !== node)) {
+              var x = node.x - quad.point.x,
+                  y = node.y - quad.point.y,
+                  l = Math.sqrt(x * x + y * y),
+                  r = node.radius + quad.point.radius;
+              if (l < r) {
+                l = (l - r) / l * .5;
+                node.x -= x *= l;
+                node.y -= y *= l;
+                quad.point.x += x;
+                quad.point.y += y;
+              }
+            }
+            return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+          };
+        }
+    </script>
+</head>
+<body onunload="killtime()">
+<!-- 메인 카테고리 시작 -->
+<nav class="navbar navbar-default"><!-- 링크가 걸린 요소를 담는 nav -->
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">HOME</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar"><!-- data-target -->
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">게시판</a></li>
+        <li><a href="#">공지사항</a></li>
+        <li><a href="#">로그인</a></li>
+        <li><a href="#">포토갤러리</a></li>
+        <li><a href="#">메일보내기</a></li>
+    </ul>
+    </div>
+</div>
+</nav><!-- 메인 카테고리 끝 -->
+
+<!-- Content 시작 -->
+<!-- First Container 시작 -->
+<div class="container-fluid bg-1 text-center">
+    <h3 class="margin">환영합니다</h3>
+    <img src="../images/whoami.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+    <h3>I'm an adventurer</h3>
+</div><!-- First Container 끝 -->
+
+<!-- Second Container 시작 -->
+<div class="container-fluid bg-2 text-center">
+    <div class="row">
+        <!-- 본문 시작 -->
+            여기에 본문내용 작성합니다
+            <!-- 이미지 스크롤 -->
+            <h3>이미지스크롤</h3>        
+            <input type="button" value="이미지 스크롤 중지" onclick="killtime()">
+            <input type="button" value="이미지 스크롤 재생" onclick="playtime()">
+            <!-- 이미지가 스크롤 되는 위치 -->
+            <div id="mydiv">
+                <script> start(); </script>
+            </div>
+
+            <!-- 디지털 시계 -->
+            <h3>디지털 시계</h3>
+            <div id="digitclock"></div>
+            <hr>
+            <button type="button" class="btn btn-info" value="시작" onclick="showtimeclock()">시작</button>
+            <button type="button" class="btn btn-warning" value="중지" onclick="killtimeclock()">중지</button>
+
+            <!-- 아날로그 시계 -->
+            <div class="container">
+                <h3>아날로그시계</h3>
+                <div id="clock"><!-- 시계 전체 원형 이미지 -->
+                    <div id="hour" class="hand"></div>  <!-- 시 이미지 -->
+                    <div id="min"  class="hand"></div>  <!-- 분 이미지 -->
+                    <div id="sec"  class="hand"></div>  <!-- 초 이미지 -->
+                </div>
+            </div>
+    
+        <!-- 본문 끝 -->
+    </div><!-- row 끝 -->
+</div><!-- Second Container 끝 -->
+<!-- Content 끝 -->
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+    Copyright &copy; 2022 MyWeb
+</footer><!-- Footer End -->
+
+
+</body>
+</html>

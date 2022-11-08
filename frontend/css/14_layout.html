@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>14_layout.html</title>
+        <link rel="stylesheet" href="reset.css">
+        <style>
+            /* 1단계 */
+            /* .container{
+                border: 2px solid blue; 
+                width: 900px; 전체 레이아웃 크기는 변하지 않게
+                margin: auto; 레이어 가운데 정렬
+            } */
+
+            /* 4단계 */
+            /* .container{
+                border: 2px solid blue; 
+                width: 912px; 각 .inner section스타일에서 2+300+2 (왼쪽선 굵기+가로크기+오른쪽선 굵기)*3개
+                margin: auto;
+            } */
+            
+            /* 5단계 완성코드 */
+            .container{
+                border: 2px solid blue; 
+                width: 900px;
+                margin: auto;
+            }
+
+
+            /* 2단계 */
+            header{
+                border: 2px solid red;
+                height: 150px;
+                width: 100%;
+                line-height: 150px;
+                text-align: center;
+            }
+
+            /* 3단계 */
+            /* .inner section{
+                border: 2px solid green;
+                height: 300px;
+                width: 300px;
+                float: left;
+            } */
+
+            /* 6단계 */
+            .inner section{
+                border: 2px solid green;
+                height: 300px;
+                width: 300px;
+                float: left;
+                /* 선굵기, 여백 등으로 늘어난 부분은 container의 width=900px 내에서 해결함 */
+                box-sizing: border-box;
+            }
+            
+            /* 7단계 float속성은 전 요소 속성을 상속받는 특징이 있음. 이미 float:left가 있는 상태임 */
+            /* footer{ 
+                border: 5px solid orange;
+                height: 100px;                
+            } */
+
+            /* 8단계 clear : float속성 해제. 6에서 상속받은 float:left속성을 지워야 함 */
+            /* footer{
+                border: 5px solid orange;
+                height: 100px;
+                clear: left; --clear: right; --clear: both;               
+            } */
+
+            /* 9단계 완성코드 */
+            /* 참조 https://www.w3schools.com/css/css_float_clear.asp */
+            footer{
+                border: 5px solid orange;
+                height: 100px;
+                clear: both; /* left,right 모두 해제 */              
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- 전체 레이아웃 구성하기 -->
+
+        <div class="container">
+            <header>Header</header><!-- header end -->
+            <div class="inner">
+                <section>Section 1</section>
+                <section>Section 2</section>
+                <section>Section 3</section>
+            </div><!-- inner end -->
+            <footer>Footer</footer><!-- footer end -->
+        </div><!-- container end -->
+
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>04_kakaomap연습.html</title>
+</head>
+<body>
+	<!-- 연습 -->
+	<!-- 강남 삼원타워 지도 띄우기 -->
+	<div id="map" style="width:500px;height:400px;"></div><!-- 지도가 나타나는 곳 -->
+	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4de0b87372dcbba0b0bd21903ed680ab"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(37.4989677,127.0316578), //지도의 중심좌표
+			level: 3 //지도의 확대 레벨
+		};
+
+		//지도를 표시할 div와 지도 옵션으로 지도를 생성합니다
+		var map = new kakao.maps.Map(container, options);
+        var datas=[
+           [37.57143283303479, 126.98899938141281,'<div style="padding:5px;font-size:3px;">파고다타운11.20~11.30</div>']
+          ,[37.5696113793491, 126.98540508419822, '<div style="padding:5px;font-size:3px;">샘물노래교실11.22~12.02</div>']
+          ,[37.57167775879981, 126.98939705536237,'<div style="padding:5px;font-size:3px;">하영노래교실11.22~12.02</div>']
+          ,[37.57118727100956, 126.9891675400185, '<div style="padding:5px;font-size:3px;">효사랑본부11.22~12.02</div>']
+        ]
+
+        for(var i=0; i<datas.length; i++){
+            var markerPosition  = new kakao.maps.LatLng(datas[i][0], datas[i][1]);
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+
+            marker.setMap(map);
+            var iwContent = datas[i][2];
+
+            var infowindow = new kakao.maps.InfoWindow({
+                content : iwContent
+            });
+
+            infowindow.open(map, marker);
+        }//for end        
+	</script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>testMONG.html</title>
+        <style>
+            body{
+                background-color: skyblue;
+            }
+
+            #background{
+                position: relative;
+                width: 400px;
+                height: 400px;
+                background-color: green;
+                top: 100px;
+                margin: auto;
+                
+            }
+
+            #textile>div{
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                background-color: greenyellow;
+                box-sizing: border-box;
+                transition: 10s ease;
+            }
+
+            h2{
+                text-align: center;
+            }
+
+            /* 타일 배치 */
+                #textile>div:nth-child(1){left: 0px;    top: 40px;}
+                #textile>div:nth-child(2){left: 40px;   top: 40px;}
+                #textile>div:nth-child(3){left: 80px;   top: 40px;}
+                #textile>div:nth-child(4){left: 120px;  top: 40px;}
+                #textile>div:nth-child(5){left: 160px;  top: 40px;}
+                #textile>div:nth-child(6){left: 200px;  top: 40px;}
+                #textile>div:nth-child(7){left: 240px;  top: 40px;}
+                #textile>div:nth-child(8){left: 280px;  top: 40px;}
+                #textile>div:nth-child(9){left: 320px;  top: 40px;}
+                #textile>div:nth-child(10){left: 360px; top: 40px;}
+
+                #textile>div:nth-child(11){left: 0px;   top: 80px;}
+                #textile>div:nth-child(12){left: 40px;  top: 80px;}
+                #textile>div:nth-child(13){left: 80px;  top: 80px;}
+                #textile>div:nth-child(14){left: 120px; top: 80px;}
+                #textile>div:nth-child(15){left: 160px; top: 80px;}
+                #textile>div:nth-child(16){left: 200px; top: 80px;}
+                #textile>div:nth-child(17){left: 240px; top: 80px;}
+                #textile>div:nth-child(18){left: 280px; top: 80px;}
+                #textile>div:nth-child(19){left: 320px; top: 80px;}
+                #textile>div:nth-child(20){left: 360px; top: 80px;}
+
+                #textile>div:nth-child(21){left: 0px;   top: 120px;}
+                #textile>div:nth-child(22){left: 40px;  top: 120px;}
+                #textile>div:nth-child(23){left: 80px;  top: 120px;}
+                #textile>div:nth-child(24){left: 120px; top: 120px;}
+                #textile>div:nth-child(25){left: 160px; top: 120px;}
+                #textile>div:nth-child(26){left: 200px; top: 120px;}
+                #textile>div:nth-child(27){left: 240px; top: 120px;}
+                #textile>div:nth-child(28){left: 280px; top: 120px;}
+                #textile>div:nth-child(29){left: 320px; top: 120px;}
+                #textile>div:nth-child(30){left: 360px; top: 120px;}
+
+                #textile>div:nth-child(31){left: 0px;   top: 160px;}
+                #textile>div:nth-child(32){left: 40px;  top: 160px;}
+                #textile>div:nth-child(33){left: 80px;  top: 160px;}
+                #textile>div:nth-child(34){left: 120px; top: 160px;}
+                #textile>div:nth-child(35){left: 160px; top: 160px;}
+                #textile>div:nth-child(36){left: 200px; top: 160px;}
+                #textile>div:nth-child(37){left: 240px; top: 160px;}
+                #textile>div:nth-child(38){left: 280px; top: 160px;}
+                #textile>div:nth-child(39){left: 320px; top: 160px;}
+                #textile>div:nth-child(40){left: 360px; top: 160px;}
+
+                #textile>div:nth-child(41){left: 0px;   top: 200px;}
+                #textile>div:nth-child(42){left: 40px;  top: 200px;}
+                #textile>div:nth-child(43){left: 80px;  top: 200px;}
+                #textile>div:nth-child(44){left: 120px; top: 200px;}
+                #textile>div:nth-child(45){left: 160px; top: 200px;}
+                #textile>div:nth-child(46){left: 200px; top: 200px;}
+                #textile>div:nth-child(47){left: 240px; top: 200px;}
+                #textile>div:nth-child(48){left: 280px; top: 200px;}
+                #textile>div:nth-child(49){left: 320px; top: 200px;}
+                #textile>div:nth-child(50){left: 360px; top: 200px;}
+
+                #textile>div:nth-child(51){left: 0px;   top: 240px;}
+                #textile>div:nth-child(52){left: 40px;  top: 240px;}
+                #textile>div:nth-child(53){left: 80px;  top: 240px;}
+                #textile>div:nth-child(54){left: 120px; top: 240px;}
+                #textile>div:nth-child(55){left: 160px; top: 240px;}
+                #textile>div:nth-child(56){left: 200px; top: 240px;}
+                #textile>div:nth-child(57){left: 240px; top: 240px;}
+                #textile>div:nth-child(58){left: 280px; top: 240px;}
+                #textile>div:nth-child(59){left: 320px; top: 240px;}
+                #textile>div:nth-child(60){left: 360px; top: 240px;}
+
+                #textile>div:nth-child(61){left: 0px;   top: 280px;}
+                #textile>div:nth-child(62){left: 40px;  top: 280px;}
+                #textile>div:nth-child(63){left: 80px;  top: 280px;}
+                #textile>div:nth-child(64){left: 120px; top: 280px;}
+                #textile>div:nth-child(65){left: 160px; top: 280px;}
+                #textile>div:nth-child(66){left: 200px; top: 280px;}
+                #textile>div:nth-child(67){left: 240px; top: 280px;}
+                #textile>div:nth-child(68){left: 280px; top: 280px;}
+                #textile>div:nth-child(69){left: 320px; top: 280px;}
+                #textile>div:nth-child(70){left: 360px; top: 280px;}
+
+                #textile>div:nth-child(71){left: 0px;   top: 320px;}
+                #textile>div:nth-child(72){left: 40px;  top: 320px;}
+                #textile>div:nth-child(73){left: 80px;  top: 320px;}
+                #textile>div:nth-child(74){left: 120px; top: 320px;}
+                #textile>div:nth-child(75){left: 160px; top: 320px;}
+                #textile>div:nth-child(76){left: 200px; top: 320px;}
+                #textile>div:nth-child(77){left: 240px; top: 320px;}
+                #textile>div:nth-child(78){left: 280px; top: 320px;}
+                #textile>div:nth-child(79){left: 320px; top: 320px;}
+                #textile>div:nth-child(80){left: 360px; top: 320px;}
+
+                #textile>div:nth-child(81){left: 0px;   top: 360px;}
+                #textile>div:nth-child(82){left: 40px;  top: 360px;}
+                #textile>div:nth-child(83){left: 80px;  top: 360px;}
+                #textile>div:nth-child(84){left: 120px; top: 360px;}
+                #textile>div:nth-child(85){left: 160px; top: 360px;}
+                #textile>div:nth-child(86){left: 200px; top: 360px;}
+                #textile>div:nth-child(87){left: 240px; top: 360px;}
+                #textile>div:nth-child(88){left: 280px; top: 360px;}
+                #textile>div:nth-child(89){left: 320px; top: 360px;}
+                #textile>div:nth-child(90){left: 360px; top: 360px;}
+
+
+
+                #house{
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                bottom: 0;
+                right: 0;
+                z-index: 10;
+                background-image: url(../images/dog_house.png);
+                background-size: 40px 40px;
+            }
+
+            #love{
+                position: absolute;
+                height: 50px;
+                width: 50px;
+                bottom: 50px;
+                right: 7px;
+                background-image: url(../images/heart.png);
+                background-size: 50px 50px;
+                z-index: 50;
+                display: block;
+                opacity: 0%;
+            }
+
+            #cloud>div:nth-child(1){
+                width: 100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 100%;
+                position: absolute;
+                animation-name: example1;
+                animation-duration: 6s;
+                display: inline-block;
+            }
+
+            #cloud>div:nth-child(2){
+                width: 100px;
+                height: 100px;
+                left: 4%;
+                background-color: white;
+                border-radius: 100%;
+                position: absolute;
+                animation-name: example2;
+                animation-duration: 6s;
+                display: inline-block;
+            }
+            
+
+
+            /* 애니메이션 */
+            @keyframes example1 {
+                0%   {opacity: 60%; left:0px;  width: 100px; height: 100px;}
+                25%  {opacity: 90%; left:25%;  width: 80px; height: 80px;}
+                50%  {opacity: 40%; left:50%;  width: 80px; height: 80px;}
+                75%  {opacity: 80%; left:75%;  width: 90px; height: 90px;}
+                100% {opacity: 60%; left:100%;  width: 80px; height: 80px;}
+            }
+
+            @keyframes example2 {
+                0%   {opacity: 80%; left:4%; width: 80px; height: 80px;}
+                25%  {opacity: 40%; left:29%; width: 100px; height: 100px;}
+                50%  {opacity: 20%; left:54%; width: 90px; height: 90px;}
+                75%  {opacity: 60%; left:79%; width: 70px; height: 70px;}
+                100% {opacity: 20%; left:104%;  width: 80px; height: 80px;}
+            }
+
+
+            /* 마우스 오버되면 */
+            #background:hover{
+                /* 참조 https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor */
+                cursor: url(../images/dog.png) 20 30, auto; 
+            }
+
+
+            #textile>div:hover{
+                background-color: rgb(87, 160, 19);
+                transition:  ease;
+            }
+
+            #house:hover{
+                cursor: initial;
+                height: 60px;
+                width: 60px;
+                background-size: 60px 60px;
+            }
+
+            #house:hover + #love{
+                opacity: 80%;
+                bottom: 70px;
+                transition: 1s ease-in;
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <div id="cloud">
+            <div></div>
+            <div></div>
+        </div>
+        <div id="background">
+            <h2>DOG DASH!</h2>
+            <div id="house"></div>
+            <div id="love"></div>
+
+            <div id="textile">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 40px end -->
+
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 80px end -->
+
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 120px end -->
+
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 160px end -->
+
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 200px end -->
+
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 240px end -->
+
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 280px end -->
+
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 320px end -->
+
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div><!-- top: 360px end -->
+
+            </div>
+        </div>
+
+
+    </body>
+</html>

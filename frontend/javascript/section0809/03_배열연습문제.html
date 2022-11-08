@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_배열연습문제.html</title>
+    </head>
+    <body>
+
+        <h3>배열 연습 문제</h3>
+        
+        <script>
+            let num=[-5, -1, 10, -3, -4];
+            let size=num.length;        //5
+
+            document.write(num);
+            document.write("<hr>");
+
+            //문1)배열 요소의 전체 합을 구하시오
+            let hap=0;
+            for(let i=0;i<size;i++){
+                hap+=num[i];
+            }
+            document.write("배열 요소의 전체 합은 "+hap);
+            document.write("<hr>");
+
+
+
+            //문2)음수의 갯수를 구하시오
+            let negative=0;
+            for(let i=0;i<size;i++){
+                if(num[i]<0){
+                    negative++;
+                }
+            }
+            document.write("음수의 갯수는 "+negative+"개");
+            document.write("<hr>");
+
+
+
+            //문3)최대값, 최소값을 각각 구하시오
+            //1)
+            document.write(Math.max(...num));   //최대값
+            document.write(Math.min(...num));   //최소값
+            document.write("<hr>");
+
+            
+        
+            //2) 내림차순 정렬 후, 최대값 구하기
+            /*
+            num.sort(function(a,b){return b-a});
+            document.write(num[0]);             //최대값
+            document.write(num[size-1]);        //최소값
+            document.write("<hr>");
+            */
+
+
+
+            //3)
+            let max=num[0];
+            let min=num[0];
+            for(let i=0;i<size;i++){
+                if(num[i]>max)  max=num[i]; //if문 뒤에 중괄호{}가 한 줄이면 생략 가능
+                if(num[i]<min)  min=num[i];
+            }
+            document.write("최대값은 "+max+"<br>");
+            document.write("최소값은 "+min);
+            document.write("<hr>");
+
+
+
+
+            //문4)num[4]요소의 등수를 구하시오(큰 수 기준으로 1등부터)
+            let rank=1;
+            for(let i=0;i<size;i++){
+                if(num[4]<num[i]){
+                    rank++;
+                }
+            }
+            document.write("num[4]요소 "+num[4]+"의 등수는 "+rank+"등<br>");
+            document.write("<hr>");
+
+
+
+
+            //문5)num배열 요소의 각각의 등수를 모두 구하시오
+            let rankArray=[1, 1, 1, 1, 1];
+            for(let i=0;i<size;i++){
+                for(let j=0;j<size;j++){
+                    if(num[i]<num[j]){
+                        rankArray[i]++;
+                    }
+                }
+            }
+            for(let i=0;i<size;i++){
+                document.write("num["+i+"]요소 "+num[i]+"의 등수는 "+rankArray[i]+"등<br>");
+            }
+            document.write("<hr>");
+
+
+
+
+
+
+
+
+            
+        </script>
+
+
+
+    </body>
+</html>

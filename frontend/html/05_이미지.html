@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">                 
+    <head>                       
+        <title>05_이미지.html</title> 
+    </head>   
+    <body>                
+         <!--
+            ● 정적 이미지(.jpg .png .gif) 추가
+                <img src="경로명+파일명">   (src는 source의 약자. 뒤에는 "경로명+파일명")
+                <img src="경로명+파일명"/>  (/>로 닫는 것은 옛날버전)
+
+             1) 상대경로(현재 문서가 저장되어 있는 폴더를 기준으로. 여기서는 /frontend/html 경로 기준)
+                images/         현재 폴더 안에서 하위폴더 images
+                ./images/       현재 폴더 안에서 하위폴더 images
+                ../images/      현재 폴더의 상위폴더 images
+                ../../images/   현재 폴더의 상위의 상위폴더 images
+
+             2) 절대경로(서버경로)
+                웹 프로젝트의 홈디렉토리(root)부터 시작            
+         -->
+        
+         <img src="../images/apeach.png">
+         <hr>
+         <img src="../images/flower3.png">
+         <hr>
+
+         <!-- <img src="경로명+파일명" width="" height="">
+            img태그 안에는 src, width, height 세가지가 있다 -->
+         <img src="../images/k2.png" width="150px" height="100px">
+         <hr>
+         <img src="../images/k2.png" width="50%" height="50%">
+         <hr>
+         <img src="../images/k2.png" width="150px">
+         <hr>
+
+         <!-- 테두리선 border에 빨간색이 뜬 것은 사용하지 말라는 거 -->
+         <img src="../images/k6.png" border="2px">
+         <hr>
+         <img src="../images/k6.png" border="0">
+         <hr>
+
+    </body>                      
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>06_제어문연습문제.html</title>
+    </head>
+    <body>
+
+        <h3>제어문 연습문제</h3>
+        
+        <script>
+            //문1) 운행거리에 따라 택시 요금을 계산하는 프로그램
+            //    2000m까지는 기본요금 900원이고
+            //    2000m초과 운행시 200m단위마다 기본요금에 100원씩 가산하여 요금을 계산한다
+            /*
+                  예1) 운행거리 1600m -> 기본요금 900
+                  예2) 운행거리 3000m -> 1000 초과   (기본요금 900+추가요금 500)=1400
+                  예3) 운행거리 2900m ->  900 초과   (기본요금 900+추가요금 500)=1400 
+            */
+ 
+/*  --내 답안--          
+            let myDistance=1600;
+            let myCharge;
+
+            if(myDistance<=2000){
+                myCharge=900;
+                document.write(myDistance+"m 주행 기본요금 : "+myCharge+"원입니다.<hr>");
+            }else if(myDistance>2000){
+                let addDistance=myDistance-2000;
+                let addCharge=Math.ceil(addDistance/200)*100;
+
+                myCharge=900+addCharge;
+                document.write(myDistance+"m 주행 총 금액은 : "+myCharge+"원입니다.<hr>");
+            }
+*/
+
+            //풀이
+            let distance=2900;  //운행거리
+            let total=0;        //전체요금
+            let overfee=0;      //초과요금
+
+            if(distance<=2000){
+                total=900;
+            }else{
+                let exceed=distance-2000; //초과거리
+                        // 2900-2000
+                        // 900
+
+                //초과요금 900/200 -> 4.5
+                //Math.ceil(4.5) -> 5 소수점값 올림함수
+                overfee=(Math.ceil(exceed/200))*100;
+                total=900+overfee;
+            }//if end
+            
+            document.write("총운행거리 : "+distance+"<br>");
+            document.write("기본요금 : 900<br>");
+            document.write("추가요금 : "+overfee+"<br>");
+            document.write("전체요금 : "+total+"<br>");
+            document.write("<hr>");
+
+
+            //갯수, 누적
+            //문2) 1~3사이의 모든 수를 더하시오(누적의 합)
+            //     1+2+3
+            let hap=0;
+            for(let a=1; a<=3; a=a+1){
+                hap=hap+a;              //hap+=a;
+            }//for end
+            document.write("누적의 합: " + hap);
+            /*
+                a=1  1<=3  {hap=0+1}  a=1+1
+                     2<=3  {hap=1+2}  a=2+1
+                     3<=3  {hap=3+3}  a=3+1
+                     4<=3
+            */
+            document.write("<hr>");
+
+
+            //문3) 4팩토리얼값을 구하시오
+            //     4*3*2*1
+            let fac=1;
+            for(let a=4;a>=1;a--){
+                fac=fac*a;
+            }//for end
+            document.write("4팩토리얼은 : " + fac);
+            /*
+                a=4  4>=1  {fac=1*4}  a=4-1
+                     3>=1  {fac=4*3}  a=3-1
+                     2>=1  {fac=(4*3)*2}  a=2-1
+                     1>=1  {fac=(4*3*2)*1}  a=1-1
+                     0>=1
+            */
+            document.write("<hr>");
+
+
+            //문4) 두수사이의 합을 구하시오
+            //     2+3+4+5
+            //     5+4+3+2
+/* --내 답안--
+            let intX=5;
+            let intY=2;
+            let intHap=0;
+
+            if(intX<intY){
+                for(let a=intX; a<=intY; a=a+1){
+                    intHap=intHap+a;              
+                }//for end
+            }else if(intX>intY){
+                for(let a=intY; a<=intX; a=a+1){
+                    intHap=intHap+a;
+                }
+            }
+            document.write("두 수의 합: " + intHap);
+            document.write("<hr>");
+
+*/            
+            /*
+                a=2  2<=5  {intHap=0+2}  a=2+1
+                     3<=5  {intHap=2+3}  a=3+1
+                     4<=5  {intHap=(2+3)+4}  a=4+1
+                     5<=5  {intHap=(2+3+4)+5}  a=5+1
+                     6<=5
+            */
+
+
+
+            //풀이
+            let start=13;
+            let end=9;
+            let sum=0;
+
+            //변수값 서로 교환하기(swap)
+            if(start>end){
+                let tmp=start;
+                start=end;
+                end=tmp;
+            }//if end
+
+            //반복문 실행하기
+            for(a=start; a<=end; a=a+1){
+                sum=sum+a
+            }//for end
+
+            document.write(start+"~"+end+"까지의 합:"+sum);
+            document.write("<hr>");
+
+
+
+
+            //문5) 1~5사이 중에서 짝수의 갯수를 구하시오
+            let count=0;
+            for(let a=1; a<=5; a=a+1){
+                if(a%2==0){
+                    count=count+1
+                }//if end
+            }//for end
+            document.write("짝수의 갯수:" + count);
+            document.write("<hr>");
+            /*
+                a=1 1<=5 {if(1%2==0)}
+                    2<=5 {if(2%2==0)  count=0+1}
+                    3<=5 {if(3%2==0)}
+                    4<=5 {if(4%2==0)  count=1+1}
+                    5<=5 {if(5%2==0)}
+                    6<=5
+            */
+
+
+
+            //문6) 서기1년 ~ 2022년 사이중에서 윤년의 갯수를 구하시오
+            //주의) 달력과 관련이 있는 정보는 윤년 구하는 공식 등은 계산식에 사용하지 말고
+            //      자바스크립트(Date객체), 자바(Calender클래스)를 사용해야 한다
+            let leap=0; //결과값
+            for(let year=1; year<=2022; year=year+1){
+                if(year%4==0 && year%100!=0 || year%400==0){
+                    leap=leap+1;
+                }//if end
+            }//for end
+            document.write("윤년의 갯수:" + leap);
+            document.write("<hr>");
+
+
+
+            //문7) x값이 10으로부터 x를 여러 번 뺀 후
+            //     결과값이 음수가 되면 x를 몇 번 뺐는가를 구하시오
+            /*
+                10-3=7
+                 7-3=4
+                 4-3=1
+                 1-3=-2
+            */           
+            let x=3;
+            let su=10;
+            let bun=0;          //결과값
+
+            while(true){        //무한Loop
+                su=su-x;
+                bun+=1;
+                if(su<0){
+                    break;
+                }
+            }
+            document.write("횟수:"+bun);
+            document.write("<hr>");
+            /////////////////////////////////////////////////
+
+            //과제)3의 배수의 누적 합이 100이 넘어가려면 3부터 어디까지 더해야 하는지 구하시오
+            //     무한루프 이용
+            /*
+                    3+6+9+12+15+18+21+24=108 >100
+                    답:24
+            */
+/* --내 답안--
+            let result=0;
+            let z=0;
+
+            while(true){
+                z=z+1;
+                result=result+3*z;
+                document.write("result:"+result+"<br>");
+                if(result>100){
+                    break;
+                }
+            }
+            document.write("<hr>"+z+"번 반복하여 누적합 : "+result+"일 때의 3의 배수값은 : "+z*3);
+ */
+
+            //풀이
+            let num=0;
+            let add=0;                                      //누적의 합
+            let str="";                                     //출력결과
+            // for(;;){} 이것도 무한루프 구문
+            while(true){
+                num=num+3;                                  //3의 배수
+                add=add+num;
+              //document.write(num+"&nbsp;&nbsp;"+add);     //&nbsp;는 띄어쓰기문자
+              //document.write("<hr>");
+                str=str+num+"+";
+                if(add>=100){
+                    break;
+                }
+            }//while end
+
+            document.write(str);
+            document.write("<hr>");
+            document.write("3의 배수의 누적의 합 : "+add);
+            document.write("<hr>");
+
+
+
+
+        </script>
+    </body>
+</html>

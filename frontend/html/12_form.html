@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>12_form.html</title>
+    </head>
+    <body>
+        <!-- form 입력양식 -->
+        <!-- 사용자들이 값을 입력할 수 있도록 해줌 -->
+        <!-- 참조 https://www.w3schools.com/html/html_form_input_types.asp -->
+        <!-- 요소, element             : <table> <img> <a>링크 <audio> -->
+        <!-- 속성, property, attribute : width, height, border, src    -->
+
+        <!-- 다양한 폼 컨트롤 요소-->
+
+        <!-- 1. <input> 요소 -->
+        <input type="button">
+        <input type="button" value="로그인"> <!-- 버튼 위에 글자출력은 value속성을 사용한다 -->
+        <input type="button" value="검색">
+        <input type="button" value="등록">
+        <input type="button" value="입실">
+        <hr>
+
+        <input type="submit" value="전송">  <!-- 전송 -->
+        <input type="reset"  value="취소">  <!-- 원래로 복귀 -->
+        <hr>
+
+        <button>회원가입</button>   <!-- type=button + type=submit의 기능이 같이 있음 -->
+        <hr>
+
+        <input type="radio">    <!-- 제시된 보기 중 하나만 선택 -->
+        <input type="checkbox"> <!-- 선택 y/n 자유롭다 -->
+        <hr>
+
+        <!-- 참조 https://dhlottery.co.kr/user.do?method=login&returnUrl= -->
+        <h3>로/그/인</h3>           <!-- 제목 -->
+        <form>                     <!-- 사용자 입력한 정보는 <form>단위로 서버로 전송됨 -->
+            <table border="1">
+            <tr>
+                <th>아이디</th>
+                <td><input type="text"></td>        <!-- 속성 타입의 text는 텍스트 입력창 -->
+                <td rowspan="2">
+                    <input type="submit" value="로그인">    <!-- 두 행을 합쳤다 -->
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password"></td>    <!-- 속성 타입의 password는 보호된 텍스트 입력창 -->
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="checkbox">         <!-- 체크박스 -->
+                    ID저장                          <!-- 글자 출력 -->
+                    <input type="button" value="회원가입">
+                    <input type="button" value="아이디/비번찾기">
+                </td>
+            </tr>
+            </table>
+        </form>
+        <hr>
+
+        <!-- 주의 사항
+            예) 잘못된 경우
+                <form>
+                    <form></form>
+                </form>
+            
+            예) 잘된 경우
+                <form></form>
+                <form></form>
+        -->
+
+        <h3>회/원/가/입</h3>
+        <!-- id="Frontend단 JavaScript나 jQuery접근시 주로 사용" -->
+        <!-- name="Backend단에서 접근시 주로 사용" -->
+        <!-- 프론트단과 백엔드단의 혼란방지 위해 id와 name은 같은 이름으로 통일 -->
+        <form id="memfrm" name="memfrm">    <!-- 아이디나 이름같이 구별하기 위한 것은 식별자라 한다 -->
+            이름 :
+            <input type="text" autofocus>  <!-- autofocus 속성은 커서가 미리 들어가 있다 -->
+            <hr>                            <!-- Ctrl + space 명령어 단축키 -->
+
+            아이디 :
+            <input type="text"
+                   id="userid"                    
+                   name="userid"
+                   size="10"
+                   maxlength="5"
+                   placeholder="아이디입력해주세요"
+                   required>                 
+            <!-- id와 name 이름 붙이는 식별자. 임의로 userid 라고 붙였다 -->
+            <!-- size는 텍스트상자 크기 -->
+            <!-- maxlength 최대글자 입력수-->
+            <!-- placeholder 미리 입력된 문구 텍스트가 채워지면 사라진다-->
+            <!-- required 반드시 입력해야 한다 -->
+            <input type="button" value="중복확인">
+            <hr>
+
+            비밀번호 :
+            <input type="text"
+                   id="userpw"
+                   name="userpw"
+                   size="12"
+                   maxlength="12"
+                   placeholder="비밀번호입력해주세요"
+                   required>
+            <hr>
+
+            우편번호 :
+            <input type="text" size="5" readonly>  <!-- readonly 커서가 못 들어감-->
+            <input type="button" value="주소찾기">
+            <hr>
+
+            나이 :
+            <!-- 그룹을 만드는 방법은 name을 똑같이 설정한다 -->
+            <!-- type=radio의 name을 동일하게 주면 그룹이 생성되고, 한 그룹 안에서 한 개만 선택할 수 있다 -->
+            <!-- value는 age라는 변수에 값을 넣어준다 -->
+            <input type="radio" name="age" value="10">10대
+            <input type="radio" name="age" value="20">20대
+            <input type="radio" name="age" value="30">30대
+            <hr>
+
+            성별 :
+            <!-- checked 미리 체크가 되어 있다 -->
+            <input type="radio" name="gender" value="m">남
+            <input type="radio" name="gender" value="f" checked>여
+            <hr>
+
+            취미 :
+            <!-- checkbox 그룹 이름을 다르게 한다 -->
+            <input type="checkbox" id="movie" name="movie" value="m">영화
+            <input type="checkbox" id="cook"  name="cook"  value="c" checked>요리
+            <input type="checkbox" id="book"  name="book"  value="b">독서
+            <hr>
+        </form>
+        <hr>
+
+        <!-- 2. 여는태그와 닫는태그가 있는 폼컨트롤 요소 -->
+        <form id="myform" name="myform">
+            <button>버튼1</button>
+            <hr>
+
+            생년월일 :
+            <!-- selected 목록 중에서 미리 선택 된다 -->
+            <!-- myyear 변수에 2021의 값이 서버로 전송된다 -->
+            <!-- option으로 선택지 여러개를 넣는다 -->
+            <select id="myyear" name="myyear">
+                <option value="2022">2022</option>
+                <option value="2021" selected>2021</option>
+                <option value="2020">2020</option>
+            </select>
+
+            <!-- multiple : Ctrl 이용해서 다중 선택 가능 -->
+            <select id="mymonth" name="mymonth" multiple>
+                <option value="1">1월</option>
+                <option value="2">2월</option>
+                <option value="3">3월</option>
+                <option value="4">4월</option>
+                <option value="5">5월</option>                
+            </select>
+            <hr>
+
+            배송메세지 :
+            <!-- text 255글자까지 가능 -->
+            <!-- textarea 약 6글자까지 가능 -->
+            <textarea cols="50" rows="3" maxlength="200">200글자이내로 입력해 주세요</textarea>
+            <hr>
+
+            <input type="submit" value="전송"> <!-- <form name=myform>이 서버로 전송됨 -->
+            <input type="reset"  value="취소">
+
+
+        </form>
+
+
+
+    </body>
+</html>

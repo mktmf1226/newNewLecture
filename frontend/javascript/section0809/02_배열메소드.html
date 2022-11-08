@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>02_배열메소드.html</title>
+    </head>
+    <body>
+
+        <h3>배열 객체 관련 메소드(함수)</h3>
+        
+        <script>
+            //참조 https://www.w3schools.com/js/js_array_methods.asp
+
+            let fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+            document.write(fruits);                  //Banana,Orange,Apple,Mango
+            document.write("<hr>");
+            document.write(fruits.toString());       //"Banana,Orange,Apple,Mango" 큰 덩어리 문자로 변환해라
+            document.write("<hr>");
+            document.write("#"+fruits.toString()+"#");  //#Banana,Orange,Apple,Mango# 큰 덩어리
+            document.write("<hr>");
+
+            document.write(fruits.length);              //4  배열요소 개수
+            document.write("<hr>");
+            document.write(fruits.toString().length);   //25 Banana,Orange,Apple,Mango  
+            document.write("<hr>");                     //   문자열 변환 후 글자 개수 (콤마 포함)
+
+            document.write(fruits.join("*"));           //Banana*Orange*Apple*Mango 
+            document.write("<hr>");                     //요소와 요소를 콤마 대신 별표로 처리해라
+            document.write(fruits.join("*").length);    //25
+            document.write("<hr>");
+
+            fruits.pop();                               //배열 마지막 요소 제거
+            document.write(fruits);                     //Banana,Orange,Apple
+            document.write(fruits.length);              //3
+            document.write("<hr>");
+
+            fruits.push("Kiwi");                        //배열 마지막 요소 추가
+            document.write(fruits);                     //Banana,Orange,Apple,Kiwi
+            document.write(fruits.length);              //4
+            document.write("<hr>");
+
+            fruits.shift();                             //배열 맨앞 요소 제거
+            document.write(fruits);                     //Orange,Apple,Kiwi
+            document.write(fruits.length);              //3
+            document.write("<hr>");
+
+            fruits.unshift("Lemon");                    //배열 맨앞 요소 추가
+            document.write(fruits);                     //Lemon,Orange,Apple,Kiwi
+            document.write(fruits.length);              //4
+            document.write("<hr>");
+
+            fruits.splice(0, 2);                        //0위치부터 2개를 제거
+            document.write(fruits);                     //Apple,Kiwi
+            document.write("<hr>");
+
+
+            //배열 요소 합치기
+            let arr1=["손흥민","김연아"];
+            let arr2=["무궁화","개나리","진달래"];
+            let arr3=["국어","영어"];
+            let arr4=arr1.concat(arr2, arr3);
+            document.write(arr4);                       //손흥민,김연아,무궁화,개나리,진달래,국어,영어
+            document.write("<hr>");                     
+            document.write(arr4.length);                //7
+            document.write("<hr>");
+            //////////////////////////////////////////
+
+
+            //참조 https://www.w3schools.com/js/js_array_sort.asp
+            /*
+                ● 정렬(Sort)
+                  - 어떤 Key값을 기준으로 순서대로 재배치
+                  - 정렬유형 : 오름차순 Ascending   ASC,  1->10, A->Z, a->z
+                               내림차순 Descending  DESC, z->a,  Z->A, 10->1
+                  - 정렬방식 : insertion sort 삽입정렬(코딩에서는 잘 안쓰임), selection sort 선택정렬, bubble sort, ~~~
+            */
+
+
+            //1)문자형
+            fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+            fruits.sort();                  //배열요소 오름차순 정렬
+            document.write(fruits);         //Apple,Banana,Mango,Orange
+            document.write("<hr>");
+
+            fruits.reverse();               //배열요소 내림차순 정렬
+            document.write(fruits);         //Orange,Mango,Banana,Apple
+            document.write("<hr>");
+
+
+
+            //2)숫자형 Numeric Sort
+            let points = [40, 100, 1, 5, 25, 10];
+
+            points.sort(function(a, b){return a - b});
+            document.write(points);         //오름차순 1,5,10,25,40,100
+            document.write("<hr>");
+
+            points.sort(function(a, b){return b - a});
+            document.write(points);         //내림차순 100,40,25,10,5,1
+            document.write("<hr>");         
+
+
+        </script>
+
+
+
+    </body>
+</html>

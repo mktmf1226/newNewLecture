@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_계산기.html</title>
+        <link href="http://fonts.cdnfonts.com/css/operator-mono" rel="stylesheet">
+        <style>
+            @font-face {
+                font-family: "Bills Mafia";
+                src: url("../../font/Bills\ Mafia.ttf") format("truetype");
+            }
+
+            @font-face {
+                font-family: "Open 24 Display St";
+                src: url("../../font/Open\ 24\ Display\ St.ttf") format("truetype");
+            }
+
+            #wrap{
+                position: relative;
+                border-radius: 25px;
+                width: 254px;
+                height: 400px;
+                background-color: rgb(198, 155, 1);
+            }
+
+            table{
+                position: absolute;
+                border: 3px solid;
+                background-color: rgb(255, 200, 0);
+                border-radius: 25px;
+                border-color: rgb(255, 226, 152);
+                box-sizing: border-box;
+                margin: 13px 10px 10px 10px;
+            }
+
+            th{
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+            }
+
+            #head{
+                background-color: black;
+                width: 220px;
+                height: 80px;
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+            }
+
+            span{
+                position: absolute;
+                color: white;
+                margin-left: 50px;
+                margin-top: 2px;
+            }
+
+            .txt{
+                border: 4px solid #3b4b41;
+                text-align: right;
+                padding-bottom: 6px;
+                border-style: solid hidden hidden solid;
+                font-family: "Open 24 Display St";
+                font-weight: bold;
+                font-size: 36px;
+                color: black;
+                letter-spacing: 2px;
+                margin: 30px 10px 5px 10px;
+                width: 190px;
+                height: 30px;
+                background-color: rgb(107, 128, 110);                
+            }
+
+            td{
+                border: none;
+            }
+
+            .button{
+                background-image: radial-gradient(circle, rgb(255, 254, 186), rgb(255, 226, 152), rgb(223, 195, 34));
+                border: none;
+                border-radius: 50%;
+                text-align: center;
+                font-family: "Bills Mafia";
+                font-weight: initial;
+                font-size: 28px;
+                color: rgb(61, 58, 40);
+                height: 50px;
+                width: 50px;
+                box-shadow: 0 4px 4px 0 rgba(178, 149, 0, 0.8);
+                cursor: pointer;
+            }/* button end */
+
+            .oper{
+                background-image: radial-gradient(circle, rgb(255, 202, 26), rgb(255, 183, 0), rgb(174, 140, 0));
+                border: none;
+                border-radius: 50%;
+                text-align: center;
+                font-family: "Operator Mono", sans-serif;
+                font-weight: bold;
+                font-size: 32px;
+                color: rgb(61, 58, 40);
+                height: 50px;
+                width: 50px;
+                box-shadow: 0 4px 4px 0 rgba(131, 109, 1, 0.8);
+                cursor: pointer;
+            }
+
+            .cls{
+                background-image: radial-gradient(circle, rgb(255, 133, 178),rgb(255, 109, 109), rgb(216, 62, 93));
+                border: none;
+                border-radius: 50%;
+                text-align: center;
+                font-family: "Operator Mono", sans-serif;
+                font-weight: bold;
+                font-size: 32px;
+                color: rgb(61, 58, 40);
+                height: 50px;
+                width: 50px;
+                box-shadow: 0 4px 4px 0 rgba(86, 10, 22, 0.6);
+                cursor: pointer;
+            }/* cls end */
+
+            /* hover and active */
+            .button:hover{
+                background-image: radial-gradient(circle, rgb(160, 220, 255), rgb(31, 188, 255), rgb(7, 97, 136));
+            }
+
+            .button:active{
+                background-image: radial-gradient(circle, rgb(0, 68, 255), rgb(31, 188, 255), rgb(7, 97, 136));
+            }
+
+            .oper:hover{
+                background-image: radial-gradient(circle, rgb(255, 178, 70), rgb(255, 115, 0), rgb(209, 101, 0));
+            }
+
+            .oper:active{
+                background-image: radial-gradient(circle, rgb(255, 60, 0), rgb(255, 149, 0), rgb(209, 136, 0));
+            }
+
+            .cls:hover{
+                background-image: radial-gradient(circle, rgb(255, 139, 139),rgb(255, 60, 60), rgb(196, 47, 77));
+            }
+
+            .cls:active{
+                background-image: radial-gradient(circle, rgb(219, 0, 0),rgb(255, 60, 60), rgb(186, 0, 37));
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <h3>미니 계산기</h3>
+        
+        <form>
+            <div id="wrap">
+            <table border="1">
+            <tr>
+                <th colspan="4"><div id="head">
+                    <span>mini calculator</span>
+                    <!-- text박스 생성 name과 id 생성 size 셀크기 설정 value 초기값 0 readonly 커서불가능 txt 클래스-->
+                    <input type="text" name="result" id="result" size="15" value="0" readonly class="txt">
+                </div></th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" class="button" value="7" onclick="inputData(7)">
+                </td>
+                <td>
+                    <input type="button" class="button" value="8" onclick="inputData(8)">
+                </td>
+                <td>
+                    <input type="button" class="button" value="9" onclick="inputData(9)">
+                </td>
+                <td>
+                    <input type="button" class="oper" value="÷" onclick="operator('/')">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" class="button" value="4" onclick="inputData(4)">
+                </td>
+                <td>
+                    <input type="button" class="button" value="5" onclick="inputData(5)">
+                </td>
+                <td>
+                    <input type="button" class="button" value="6" onclick="inputData(6)">
+                </td>
+                <td>
+                    <input type="button" class="oper" value="×" onclick="operator('*')">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" class="button" value="1" onclick="inputData(1)">
+                </td>
+                <td>
+                    <input type="button" class="button" value="2" onclick="inputData(2)">
+                </td>
+                <td>
+                    <input type="button" class="button" value="3" onclick="inputData(3)">
+                </td>
+                <td>
+                    <input type="button" class="oper" value="-" onclick="operator('-')">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" class="button" value="0" onclick="inputData(0)">
+                </td>
+                <td>
+                    <input type="button" class="oper" value=".">
+                </td>
+                <td>
+                    <input type="button" class="oper" value="=" onclick="compute()">
+                </td>
+                <td>
+                    <input type="button" class="oper" value="+" onclick="operator('+')">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" class="oper" value="←" onclick="backspace()">
+                </td>
+                <td colspan="2">
+                    <input type="button" class="cls" value="C" onclick="cls()">
+                </td>
+            </tr>
+            </table>
+            </div>
+        </form>
+
+
+
+        <script>
+
+            //1) C 버튼을 클릭하면 id=result에 0을 대입
+            function cls(){
+                document.getElementById("result").value=0;
+            }//cls() end
+            
+            //2) 클릭한 숫자 버튼에 맞는 숫자를 출력하기
+            function inputData(su){
+                //alert(su);
+                //전달받은 su변수값을 id=result에 대입
+                //document.getElementById("result").value+=su;
+                //id=result값을 숫자형으로 변환("0123" -> 123)
+                document.getElementById("result").value=Number(document.getElementById("result").value+=su);
+            }//inputDate() end
+
+            //3) 연산에 필요한 전역변수 선언하기            
+            let op;     //연산기호
+            let num1;   //사용자가 입력한 첫번째 수
+            let num2;   //사용자가 입력한 두번째 수
+
+
+            function operator(kind){
+                //4) 클릭한 연산기호를 전역변수 op에 저장하기
+                //alert(kind);
+                op=kind;
+
+                //5) 현재 id=result가 가지고 있는 값을 num1에 저장하기
+                num1=Number(document.getElementById("result").value);
+
+                //6) 두번째 수를 입력받기 위해 id=result값을 초기화하기
+                cls();
+            }//operator() end
+
+            //참조 https://www.w3schools.com/jsref/jsref_eval.asp
+            function compute(){
+                //실제 계산을 해서 결과값 출력하기
+                //7) 계산에 필요한 두번째 수를 num2에 저장하기
+                num2=Number(document.getElementById("result").value);
+
+                //8) 계산해서 결과 출력하기
+                document.getElementById("result").value=eval(num1+op+num2);
+            }//compute() end
+
+            //9) ← 버튼을 클릭하면 id=result값에서 마지막 글자부터 순서대로 지우기
+            //   id=result값에서 마지막 글자만 제외시키고 다시 대입
+            //   단, 자릿수가 한 개인 값은 0으로 대입
+            function backspace(){
+
+                //ㄱ)id=result값을 가져와서 글자갯수 출력하기
+                let result=document.getElementById("result").value;
+                //alert(result);
+                //alert(result.length);
+
+                //ㄴ)처음글자부터 마지막 글자를 제외시키고 문자열 가져오기(substring())
+                let len=result.length;
+                //alert(result.substring(0,len-1));
+                
+                //ㄷ)분리된 ㄴ)문자열을 다시 id=result에 대입하기
+                //   단, 글자갯수가 1개이면 0으로 다시 대입
+                if(len==1){
+                    document.getElementById("result").value=0;
+                }else{
+                    document.getElementById("result").value=result.substring(0,len-1);
+                }//if end
+
+            }//backspace() end
+        </script>
+
+
+
+    </body>
+</html>

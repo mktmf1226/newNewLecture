@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>13_form.html</title>
+    </head>
+    <body>
+
+        <!-- 참조 https://www.w3schools.com/html/html_forms_attributes.asp -->
+
+        <h3>1. 폼 관련 속성들</h3>
+        <!-- 
+            id=""           폼 아이디 (주로 Frontend단에서 접근시 사용) (#단축키)
+            name=""         폼 이름   (주로 Backend단에서 접근시 사용)
+            action=""       사용자가 입력 요청한 정보를 서버측에서 받는 페이지명 또는 명령어
+            method=""       전송방식 get 또는 post
+            enctype=""      
+        -->
+        <form id="loginfrm" name="loginfrm" action="ok.jsp">
+            아이디 : <input type="text" name="userid"> <hr>
+            비밀번호: <input type="password" name="userpw"> <hr>
+            <input type="submit" value="전송">
+        </form>
+        <hr>
+
+        <!-- enctype 파일 첨부해서 전송 -->
+        <form enctype="multipart/form-data">
+            첨부파일 : <input type="file">       <!-- type="file" 선택할 수 있는 다이얼로그 상자가 나온다 -->
+        </form>
+        <hr>
+
+        <h3>2. type=image </h3>
+        <form action="ok2.jsp">
+            <img src="../images/angel.png">     <!-- img 요소로 그림추가 -->
+            <hr>
+
+            <input type="image" src="../images/devil.png"> <!-- input 요소로 추가 -->
+            <hr>
+
+            검색 : <input type="text" name="search">
+            <input type="image" src="../images/search.png">
+            <hr>
+        </form>
+
+        <h3>3. 다양한 Input Types </h3>
+        <!-- 참조 https://www.w3schools.com/html/html_form_input_types.asp -->
+        <!-- HTML페이지에서 노출되지는 않지만 form에 포함된 컨트롤 요소 -->
+        <input type="hidden" id="page" name="page" value="3">
+        <input type="hidden" id="col"  name="col"  value="title">
+        <hr>
+
+        <input type="number" id="quantity" min="1" max="5"><hr>
+        <input type="range" id="vol" min="0" max="50"><hr>
+        <input type="color"><hr>
+        <input type="date"><hr>
+        <input type="search"><hr>
+        <input type="time"><hr>
+        <hr>
+
+        <h3>4. Label </h3>
+        <!-- 출력된 부분 이름 : 을 누르면 user로 명명된 곳으로 찾아가라 -->
+        <label for="user">이름 :</label>    
+        <input type="text" id="user">
+
+
+    </body>
+</html>

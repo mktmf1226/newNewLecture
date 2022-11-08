@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>랜덤뽑기.html</title>
+    </head>
+    <body>
+        <script>
+            var lotto = new Array();
+            var tmp;
+            for (var i = 0; i < 45; i++) {
+                lotto[i] = i + 1;
+            }
+
+            document.write("당신의 로또 번호는?"+"<br>");
+
+            for(var i = 0; i < 6; i++) {
+                var n = (Math.floor(Math.random()*45))+1;
+                tmp = lotto[i];
+                lotto[i] = lotto[n];
+                lotto[n] = tmp;
+
+                let a = 3
+                let b = 5 
+
+                // a = b
+                // b = a
+
+            }
+
+            for(var i = 0; i < 6; i++) {
+                if (i<5) {
+                document.write(lotto[i]+", ");
+                } else {
+                document.write(lotto[i]+".");
+                }
+            }
+
+        </script>
+    </body>
+</html>

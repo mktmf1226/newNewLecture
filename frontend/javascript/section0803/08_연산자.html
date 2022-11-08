@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>08_연산자.html</title>
+    </head>
+    <body>
+
+        <h3>연산자</h3>
+
+        <script>
+            // 연산자 우선 순위
+            // -> 최우선 연산자 ()
+            // -> 산술 -> 비교 -> 논리
+            // -> 후순위 연산자 = 대입연산자
+            
+
+            // 1. 결합연산자 ()
+            document.write(3+4+5/2);    // 9.5
+            document.write("<hr>");
+
+            document.write((3+4+5)/2);  // 6
+            document.write("<hr>");
+
+
+            // 2. 대입연산자
+            let num=3;
+
+            num=num+2;
+            document.write(num);        // 5
+            document.write("<hr>");
+
+            num+=2;                     // num=num+2; 와 같은 표현이다
+            document.write(num);        // 7
+            document.write("<hr>");
+
+            num=num-3;
+            document.write(num);        // 4
+            document.write("<hr>");
+
+            num-=3;
+            document.write(num);        // 1
+            document.write("<hr>");
+
+            num*=10;                    // num=num*10; 과 같은 표현이다
+            document.write(num);        // 10
+            document.write("<hr>");
+
+            num/=2;                     // num=num/2; 와 같은 표현이다
+            document.write(num);        // 5
+            document.write("<hr>");
+
+            num%=4;                     // num=num%4; 와 같은 표현이다
+            document.write(num);        // 1
+            document.write("<hr>");
+
+
+
+            // 3. 1증감 연산자
+            let a=3;
+            a=a+1;                      // 4
+            document.write(a + "<hr>");
+            a+=1;                       // 5
+            document.write(a + "<hr>");
+            a++;                        // 6
+            document.write(a + "<hr>");
+            ++a;                        // 7
+            document.write(a + "<hr>");
+
+            let b=3;
+            b=b-1;                      // 2
+            document.write(b + "<hr>");
+            b-=1;                       // 1
+            document.write(b + "<hr>");
+            b--;                        // 0
+            document.write(b + "<hr>");
+            --b;                        //-1
+            document.write(b + "<hr>");
+
+
+            // 1증감연산자는 다른 계산식과 같이 사용할 경우 주의!!
+            let c=10;
+            let d=20;
+            let i=c++;                  // i=c      10
+                                        // c=c+1    11
+            let j=--d;                  // d=d-1    19
+                                        // j=d      19
+            document.write(c+d+i+j);
+            document.write("<hr>");
+
+
+
+
+        </script>
+
+
+
+    </body>
+</html>

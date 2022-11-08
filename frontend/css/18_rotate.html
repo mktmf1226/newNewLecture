@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>18_rotate.html</title>
+        <style>
+            #menu{
+                position: relative;                 /* 부모 */
+                width: 150px;
+                height: 130px;
+                background-color: silver;
+                border-radius: 25px;                /* 모서리 라운드 처리 */
+                margin: auto;                       /* 수평을 기준으로 가운데 정렬 */
+                cursor: pointer;                    /* 커서 손모양 */
+                transition: .4s ease-out;
+            }
+            
+            #menu:hover{                            /* 마우스가 올라오면 */
+                background-color: orange;
+            }
+
+            #menu>strong{
+                position: absolute;                 /* 자식. 원래 나의 위치도 사라지고 부모 안에서만 움직인다 */
+                bottom: 12px;
+                left: 36px;
+                text-align: center;
+            }
+
+            /* CSS로 이미지 삽입 */
+            #menu>.gear{
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                background-image: url(../images/gear-gray.png);
+                background-size: 50px 50px;
+            }
+
+            /* 톱니바퀴 이미지 배치하기 */
+            #menu>.gear:nth-child(1){
+                top: 12px;
+                left: 34px;
+            }
+
+            #menu>.gear:nth-child(2){
+                top: 50px;
+                left: 56px;
+                transform: rotate(-30deg);          /* 반시계방향으로 30도 회전 */
+            }
+
+            /* 마우스가 바탕색(실버)에 오버가 되면 이미지를 오랜지색 이미지로 변경 */
+            #menu:hover>.gear{
+                background-image: url(../images/gear.png);
+                transition: .4s linear;             /* ease 가속도 | linear 등가속도 */
+            }
+
+            /* 이미지 회전 */
+            #menu:hover>.gear:nth-child(1){
+                /* 시계 반대방향으로 반바퀴 회전 */
+                transform: rotate(-180deg);
+            }
+
+            #menu:hover>.gear:nth-child(2){
+                /* 시계방향으로 반바퀴 회전 */
+                transform: rotate(150deg);
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <div id="menu">
+            <div class="gear"></div>
+            <div class="gear"></div>
+            <strong>SETTINGS</strong>
+        </div>
+
+    </body>
+</html>

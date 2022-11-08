@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>04_Date객체.html</title>
+    </head>
+    <body>
+
+        <h3>Date객체 날짜 세팅</h3>
+        
+        <script>
+            //참조 https://www.w3schools.com/js/js_date_methods_set.asp
+
+            
+            const someday=new Date();           //오늘날짜
+            someday.setFullYear(1989, 5, 8);    //1989년 6월 8일
+
+            document.write(someday.getFullYear()+"<hr>");   //1989
+            document.write(someday.getMonth()+"<hr>");      //5
+            document.write(someday.getDate()+"<hr>");       //8
+
+            const days=["일", "월", "화", "수", "목", "금", "토"];
+            document.write(days[someday.getDay()]+"<hr>");  //목
+
+            const d=new Date();
+            d.setDate(someday.getDate()+10);                //8+10
+            document.write(d.getDate()+"<hr>");             //18   
+
+
+
+        </script>
+
+
+
+    </body>
+</html>

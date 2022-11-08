@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>03_마우스이벤트.html</title>
+    </head>
+    <body>
+        <h3>마우스 이벤트</h3>
+        <table border="1">
+            <tr>
+                <th onmouseover="show('r')">라이언</th>
+                <th onmouseover="show('n')">네오</th>
+                <th onmouseover="show('j')">제이지</th>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div id="ryan" style="display: block;">
+                        <img src="../../images/k7.png">
+                    </div>
+                    <div id="neo" style="display: none;">
+                        <img src="../../images/k5.png">
+                    </div>
+                    <div id="jayg" style="display: none;">
+                        <img src="../../images/k3.png">
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <script>
+            function show(kind){//매개변수 kind 전달값이 (동물)종라서
+                switch(kind){
+                    case "r": document.getElementById("ryan").style.display="block";
+                              document.getElementById("neo").style.display="none";
+                              document.getElementById("jayg").style.display="none";
+                              break;
+                    case "n": document.getElementById("ryan").style.display="none";
+                              document.getElementById("neo").style.display="block";
+                              document.getElementById("jayg").style.display="none";
+                              break;
+                    case "j": document.getElementById("ryan").style.display="none";
+                              document.getElementById("neo").style.display="none";
+                              document.getElementById("jayg").style.display="block";
+                              break;
+                }//switch end
+            }//show() end            
+        </script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>15_스크롤이동.html</title>
+        <script src="jquery-3.6.1.min.js"></script>
+        <!-- css reset!! -->
+        <link rel="stylesheet" href="../css/reset.css"/>
+        <style>
+            /*나눔고딕 폰트 임포트*/
+            @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+            html {overflow-y: scroll;} /*세로방향 스크롤 생성*/
+            body {font:14px 'Nanum Gothic',dotum, sans-serif; margin:0;}
+
+            .hide {
+                        width:0; height:0;
+                        margin:0; border:0; padding:0;
+                        font-size:0; line-height:0;
+                        overflow: hidden; visibility: hidden;
+            }
+
+            #footer {
+                        border-top:1px solid #00BCD4;
+                        width:1000px;
+                        height:300px;
+                        text-align: center;
+                        color:#00BCD4;
+                        line-height: 100px; /*줄간격*/
+            }
+
+            #topBtn a {
+                        position: fixed;
+                        bottom:10px; margin-left:1010px;
+                        display: block;
+                        width:50px; height:50px; border-radius: 25px; /*원형만들기*/
+                        background:#00BCD4; color:#fff;
+                        font-size:20px; font-weight: bold;
+                        box-shadow:0 0 4px #333;
+                        text-align:center; line-height:50px;
+                        opacity: .5;
+                        text-decoration: none;
+            }
+        
+            #topBtn a:hover { opacity: 1; }
+
+            #wrap {
+                        width:1000px;
+                        margin: auto; /*가운데정렬*/
+                        border:1px solid #7b43ff;
+            }
+
+            #header {
+                        width:1000px; height:122px;
+                        position: fixed;
+                        top:0;
+                        background:rgb(225, 250, 255);
+            }
+
+            #header>h1 {
+                        height:70px; text-align: center;
+                        font-size:36px; color:#00BCD4;
+                        line-height:70px; font-weight:bold;
+            }
+
+            #nav {
+                        height:50px; 
+                        border:1px solid #00BCD4; 
+                        border-left:none; border-right:none;
+                        text-align: center;
+            }
+
+            #nav li { display: inline-block; margin: 0 3px 0 3px;}
+
+            #nav li a {
+                        display:block; padding:0 10px 0 10px;
+                        height:50px; line-height:50px;
+                        color:#00BCD4;
+                        font-size:17px; font-weight:bold;
+                        text-decoration: none;
+            }
+
+            #nav li a:hover {
+                        background:#80DEEA; color:#fff;
+                        text-decoration: underline;
+            }
+
+            #nav li.now a { background:#00BCD4; color:#fff; }
+
+            #content {
+                        width:1000px; min-height:400px;
+                        padding-top:121px; color:#fff;
+            }
+
+            #content h2 {
+                        font-size:200px; font-weight:bold;
+                        text-align: center;
+            }
+
+            #box1 { width:1000px; height:600px; background:#E91E63; }
+            #box1>h2 { line-height:600px; }
+
+            #box2 { width:1000px; height:1000px; background:#3F51B5; }
+            #box2>h2 { line-height:1000px; }
+
+            #box3 { width:1000px; height:400px; background:#03A9F4; }
+            #box3>h2 { line-height:400px; }
+
+            #box4 { width:1000px; height:800px; background:#8BC34A; }
+            #box4>h2 { line-height:800px; }
+
+            #box5 { width:1000px; height:1200px; background:#FFC107; }
+            #box5>h2 { line-height:1200px; }
+
+        </style>
+    </head>
+    <body>
+
+        <div id="wrap">
+            <div id="header">
+                <h1>로고</h1>
+                <div id="nav">
+                    <h2 class="hide">메인메뉴</h2>
+                    <ul>
+                        <li class="now"><a href="">박스1보기</a></li>
+                        <li><a href="">박스2보기</a></li>
+                        <li><a href="">박스3보기</a></li>
+                        <li><a href="">박스4보기</a></li>
+                        <li><a href="">박스5보기</a></li>
+                    </ul>
+                </div><!--#nav end-->
+            </div><!--#header end-->
+
+            <div id="content">
+                <div id="box1"><h2>박스1</h2></div>
+                <div id="box2"><h2>박스2</h2></div>
+                <div id="box3"><h2>박스3</h2></div>
+                <div id="box4"><h2>박스4</h2></div>
+                <div id="box5"><h2>박스5</h2></div>
+            </div><!--#content end-->
+
+            <div id="footer">
+                &copy; 2022 ITWILL          <!--&copy; 카피라이트 기호 © -->
+            </div><!--#footer end-->
+
+            <div id="topBtn">
+                <a href="#wrap">TOP</a>     <!-- #wrap으로 이동 -->
+            </div><!--#topBtn end-->
+
+        </div><!--#wrap end-->
+
+
+        
+        
+
+        <script>
+            $("#nav li").click(function(e){ //e 클릭이벤트를 받는 객체
+                //alert("test");
+                //alert(e); //[object Object]
+
+                //브라우저가 가진 기본 기능 막기
+                //내부 링크 안걸림
+                //<a>앵커태그의 기본동작을 방지한다. 클릭해도 리로드가 일어나지 않음
+                e.preventDefault();
+
+                //사용자가 클릭한 li요소의 index 얻기 (0부터 시작)
+                let idx = $(this).index();
+                //alert(idx);
+
+                //각 id=box1 ~ box5의 위쪽 여백
+                //alert($("#box1").offset().top); // 122
+                //alert($("#box2").offset().top); // 722
+                //alert($("#box3").offset().top); //1722
+                //alert($("#box4").offset().top); //2122
+                //alert($("#box5").offset().top); //2922
+                let bTop=$("#box" + (idx+1)).offset().top;
+
+                //스크롤 애니메이션 처리
+                //$("body") 브라우저마다 처리하는 객체가 다름
+                //122 -> id=box1의 위쪽 여백
+                //300 -> 애니메이션 실행 속도
+                $("body, html").animate({scrollTop : bTop-122}, 300);
+                
+
+            });//click end
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+
+    </body>
+</html>
