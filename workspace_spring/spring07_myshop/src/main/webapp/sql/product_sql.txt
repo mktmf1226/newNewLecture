@@ -1,5 +1,18 @@
 --product_sql.txt
 
+--오라클 콘솔창 예쁘게 출력하기
+set pagesize 100;
+set linesize 1000;
+col product_code for a30;
+col product_name for a10; 
+col description for a20; 
+col price for a30; 
+col filename for a20; 
+col filesize for a10; 
+
+--다 필요없고 developer로 보자
+
+
 --상품테이블
 create table product(
 	 product_code 	int 			primary key
@@ -7,6 +20,7 @@ create table product(
 	,description 	varchar(2000)
 	,price 			int 			default 0
 	,filename 		varchar(500)
+	,filesize 		long
 );
 
 --상품 시퀀스

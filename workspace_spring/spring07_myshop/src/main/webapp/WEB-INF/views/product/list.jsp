@@ -45,8 +45,8 @@
 				<br>
 				상품가격 : <fmt:formatNumber value="${row.PRICE}" pattern="#,###"/>
 			</td>
-			<!-- 테이블 한줄에 5줄씩 -->
 			<c:if test="${vs.count mod 5 == 0}">
+			<!-- 테이블 한줄에 5줄씩 -->
 				<tr></tr>
 			</c:if>
 		</c:forEach>
