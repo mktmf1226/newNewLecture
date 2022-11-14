@@ -15,15 +15,31 @@ col filesize for a10;
 
 --상품테이블
 create table product(
-	 product_code 	int 			primary key
-	,product_name 	varchar(100) 	not null
-	,description 	varchar(2000)
-	,price 			int 			default 0
-	,filename 		varchar(500)
-	,filesize 		long
+	 product_code 	number 			primary key		--상품번호
+	,product_name 	varchar(255) 	not null		--상품명
+	,description 	varchar(2000)					--상품내용
+	,price 			number 			default 0		--상품가격
+	,filename 		varchar2(255)					--파일명
+	,filesize 		number 			default 0		--파일크기
+	,regdate 		date 			default sysdate	--작성일
 );
 
---상품 시퀀스
+-------------------------------------------------------------
+MariaDB
+--상품테이블
+create table product(
+	 product_code 	int 			primary key		--상품번호
+	,product_name 	varchar(255) 	not null		--상품명
+	,description 	varchar(2000)					--상품내용
+	,price 			int 			default 0		--상품가격
+	,filename 		varchar(255)					--파일명
+	,filesize 		int 			default 0		--파일크기
+	,regdate 		date 			default sysdate	--작성일
+);
+
+
+
+--상품번호 시퀀스
 create sequence product_seq;
 
 commit;
