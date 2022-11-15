@@ -17,7 +17,7 @@ create table pcomment(
 	,pno 		int 			not null		--부모글 번호
 	,content 	varchar(255) 	not null		--댓글내용
 	,wname 		varchar(100) 	not null		--작성자
-	,regdate 	date 			default sysdate	--작성일
+	,regdate 	datetime 		default now()	--작성일
 );
 
 

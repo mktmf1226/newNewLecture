@@ -119,23 +119,80 @@
 					,data	:{'pno':pno} //부모글 번호 
 					,success:function(data){
 						//alert(data);
+						let a=''; //출력할 결과값
 						$.each(data, function(key, value){
 							//alert(key);				//순서 0 1 2
 							//alert(value);			//[object Object]
 							//alert(value.cno);		//10
 							//alert(value.pno);		//5
-							alert(value.content);	//루비 반짝
+							//alert(value.content);	//루비 반짝
 							//alert(value.wname);		//test
 							//alert(value.regdate);	//2022-11-14 17:36:45
-						});//each() end
-					}//success
-			});
+							a+='<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottm:15px;">';
+							a+='	<div class="commentInfo' + value.cno + '">';
+							a+='	댓글번호: ' + value.cno + ' / 작성자: ' + value.wname + " " + value.regdate;
+							a+='	<a href="javascript:commentUpdate(' + value.cno +', \'' + value.content+ '\')">수정</a>';
+							a+='	<a href="javascript:commentDelete(' + value.cno + ')">삭제</a>';
+							a+='	</div>';
+							a+='	<div class="commentContent' + value.cno + '">';
+							a+='		<p>내용: ' + value.content + '</p>';
+							a+='	</div>';
+							a+='</div>';
+						});//each() end						
+						$(".commentList").html(a);	//<div class="commentList">안에 넣을 때, .온점 사용					
+					}//success end
+			});//ajax() end
 		}//commentList() end
 		
 		//페이지 처음 로딩시 댓글 목록 일회성 출력
 		$(document).ready(function(){
 			commentList();
 		});//ready() end
+		
+		
+		//댓글 삭제
+		function commentDelete(cno){
+			$.ajax({
+					 url:'/comment/delete/' + cno
+					,type:'post'
+					,success:function(data){
+						if(data==1) {
+							commentList(); //댓글 삭제 후 댓글목록 함수호출						
+						}//if end
+					}//susccess end
+			});//ajax() end
+		}//commentDelete() end
+		
+		
+		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경
+		function commentUpdate(cno, content){
+			let a='';
+			a += '<div class="input-group">';
+			//a += '	<input type="text" name="content_' + cno + '" value="' + content + '">';
+			a += '	<input type="text" id="content_' + cno + '" value="' + content + '">';
+			a += '	<button type="button" onclick="commentUpdateProc(' + cno + ')">수정</button>';
+			a += '</div>';
+			
+			$('.commentContent' + cno).html(a);
+		}//commentUpdate() end
+		
+		//댓글 수정
+		function commentUpdateProc(cno){
+			//let updateContent=$('[name=content_' + cno + ']').val();
+			let updateContent=$('#content_' + cno).val();
+			//alert(cno);
+			//alert(updateContent);
+			
+			$.ajax({
+					 url:'/comment/update'
+					,type:'post'
+					,data:{'content':updateContent, 'cno':cno} //JSON형태
+					,success:function(data){
+						if(data==1) commentList(); //댓글 수정후 목록 출력
+					}//success end
+			});//ajax() end
+		}//commentUpdateProc() end
+		
 		
 		
 	</script>

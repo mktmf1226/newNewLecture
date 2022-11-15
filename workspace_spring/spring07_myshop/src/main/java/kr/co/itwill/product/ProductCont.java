@@ -87,7 +87,7 @@ public class ProductCont {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("product/detail"); //view단 호출
 		mav.addObject("product", productDao.detail(product_code));
-		return mav;		
+		return mav;
 	}//detail() end
 	/*
 		@RequestParam
