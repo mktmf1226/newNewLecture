@@ -33,17 +33,17 @@
 		<c:forEach var="row" items="${list}" varStatus="vs">
 			<td>
 				<c:choose>
-					<c:when test="${row.FILENAME != '-'}">
-						<img src="/storage/${row.FILENAME}" width="100px">					
+					<c:when test="${row.filename != '-'}">
+						<img src="/storage/${row.filename}" width="100px">					
 					</c:when>
 					<c:otherwise>
 						등록된 사진 없음!!<br>
 					</c:otherwise>
 				</c:choose>
 				<br>
-				상품명 : <a href="detail/${row.PRODUCT_CODE}">${row.PRODUCT_NAME}</a>
+				상품명 : <a href="detail/${row.product_code}">${row.product_name}</a>
 				<br>
-				상품가격 : <fmt:formatNumber value="${row.PRICE}" pattern="#,###"/>
+				상품가격 : <fmt:formatNumber value="${row.price}" pattern="#,###"/>
 			</td>
 			<c:if test="${vs.count mod 5 == 0}">
 			<!-- 테이블 한줄에 5줄씩 -->

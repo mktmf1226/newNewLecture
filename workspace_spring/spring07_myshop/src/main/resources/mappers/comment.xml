@@ -6,11 +6,20 @@
 <!-- 실행할 SQL문을 정의해 놓은 파일 (DAO 클래스 역할) -->
 <!-- 주의사항 : 종결문자 ; 생략해야 함 -->
 <mapper namespace="comment"><!-- 테이블 이름 -->
-
+	<!-- OracleDB -->
+	<!-- 
 	<insert id="insert" parameterType="kr.co.itwill.comment.CommentDTO">
 		INSERT INTO pcomment(cno, pno, content, wname)
 		VALUES (pcomment_seq.nextval, #{pno}, #{content}, #{wname})
 	</insert>
+	-->
+	<!-- MariaDB -->
+	<insert id="insert" parameterType="kr.co.itwill.comment.CommentDTO">
+		INSERT INTO pcomment(cno, pno, content, wname)
+		VALUES ((select ifnull(max(cno),0)+1 from pcomment as TB), #{pno}, #{content}, #{wname})
+	</insert>
+
+
 
 	<select id="list" resultType="kr.co.itwill.comment.CommentDTO" parameterType="int">
 		SELECT cno, pno, content, wname, regdate

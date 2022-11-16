@@ -32,23 +32,23 @@
 		<table border="1">
 		<tr>
 			<td>상품명</td>
-			<td><input type="text" name="product_name" value="${product.PRODUCT_NAME}"></td>
+			<td><input type="text" name="product_name" value="${product.product_name}"></td>
 		</tr>
 		<tr>
 			<td>상품가격</td>
-			<td><input type="number" name="price" value="${product.PRICE}"></td>
+			<td><input type="number" name="price" value="${product.price}"></td>
 		</tr>
 		<tr>
 			<td>상품설명</td>
 			<td>
-				<textarea rows="5" cols="60" name="description">${product.DESCRIPTION}</textarea>
+				<textarea rows="5" cols="60" name="description">${product.description}</textarea>
 			</td>
 		</tr>
 		<tr>
 			<td>상품사진</td>
 			<td>
 				<c:if test="${product.FILENAME != '-'}">
-					<img src="/storage/${product.FILENAME}" width="100px">
+					<img src="/storage/${product.filename}" width="100px">
 				</c:if>
 				<br>
 				<input type="file" name="img">
@@ -56,7 +56,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="hidden" name="product_code" value="${product.PRODUCT_CODE}">
+				<input type="hidden" name="product_code" value="${product.product_code}">
 				<input type="button" value="상품수정" onclick="product_update()">
 				<input type="button" value="상품삭제" onclick="product_delete()">
 			</td>
@@ -70,7 +70,7 @@
 		<label for="content">댓글</label>
 		<form name="commentInsertForm" id="commentInsertForm">
 		<div>
-			<input type="hidden" name="pno" id="pno" value="${product.PRODUCT_CODE}">
+			<input type="hidden" name="pno" id="pno" value="${product.product_code}">
 			<input type="text" name="content" id="content" placeholder="내용을 입력해 주세요">
 			<button type="button" name="commentInsertBtn" id="commentInsertBtn">등록</button>
 		</div>
@@ -83,7 +83,7 @@
 	
 	<!-- 댓글관련 자바스크립트 -->
 	<script>
-		let pno='${product.PRODUCT_CODE}'; //부모글 번호
+		let pno='${product.product_code}'; //부모글 번호
 		
 		//댓글 등록버튼 클릭했을 때
 		$("#commentInsertBtn").click(function(){

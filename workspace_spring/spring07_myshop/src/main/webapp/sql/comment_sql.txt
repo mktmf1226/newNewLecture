@@ -13,11 +13,11 @@ create table pcomment(
 MariaDB
 --상품 댓글 테이블
 create table pcomment(
-	 cno 		int 			primary key		--댓글번호
-	,pno 		int 			not null		--부모글 번호
-	,content 	varchar(255) 	not null		--댓글내용
-	,wname 		varchar(100) 	not null		--작성자
-	,regdate 	datetime 		default now()	--작성일
+	  cno int AUTO_INCREMENT primary key
+	, pno int not null
+	, content varchar(255) not null
+	, wname varchar(100) not null
+	,regdate datetime default current_timestamp not null
 );
 
 

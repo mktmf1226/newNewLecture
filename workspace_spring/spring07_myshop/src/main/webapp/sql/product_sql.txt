@@ -27,14 +27,14 @@ create table product(
 -------------------------------------------------------------
 MariaDB
 --상품테이블
-create table product(
-	 product_code 	int 			primary key		--상품번호
-	,product_name 	varchar(255) 	not null		--상품명
-	,description 	varchar(2000)					--상품내용
-	,price 			int 			default 0		--상품가격
-	,filename 		varchar(255)					--파일명
-	,filesize 		bigint 			default 0		--파일크기
-	,regdate 		datetime		default now()	--작성일
+create table product (
+	  product_code 	int 	AUTO_INCREMENT 	primary key 
+	, product_name 	varchar(255) 	not null 
+	, description 	varchar(255) 
+	, price int default 0 not null
+	, filename varchar(255) not null 
+	, filesize bigint default 0 not null
+	, regdate datetime default current_timestamp not null
 );
 
 

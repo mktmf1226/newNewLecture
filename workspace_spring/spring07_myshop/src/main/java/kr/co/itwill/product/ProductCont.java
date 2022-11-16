@@ -58,7 +58,7 @@ public class ProductCont {
 				String path=application.getRealPath("/storage"); //실제 물리적인 경로
 				//System.out.println(path);
 				//D:\java202207\workspace_spring\spring07_myshop\src\main\webapp\storage
-				img.transferTo(new File(path+"\\"+filename)); //경로+파일이름을 File로 저장
+				img.transferTo(new File(path+"/"+filename)); //경로+파일이름을 File로 저장
 															  //역슬래시 두 개중 첫번째는 특수문자 명령어기능 예시) \t
 			} catch (Exception e) {
 				e.printStackTrace(); //에러메세지 출력
@@ -112,7 +112,7 @@ public class ProductCont {
 			//oldFile
 			String product_code=map.get("product_code").toString();
 			Map<String, Object> product=productDao.detail(product_code);
-			String oldFilename=product.get("FILENAME").toString();
+			String oldFilename=product.get("filename").toString();
 			//새 파일
 			filename=img.getOriginalFilename(); //파일명 저장
 			filesize=img.getSize();				//파일사이즈 저장. 테이블에 filesize칼럼 추가가능
@@ -123,12 +123,12 @@ public class ProductCont {
 				//D:\java202207\workspace_spring\spring07_myshop\src\main\webapp\storage
 				
 				//oldFile 삭제하기
-				File oldFile=new File(path+"\\"+oldFilename);
+				File oldFile=new File(path+"/"+oldFilename);
 				if(oldFile.exists()) { //실제 파일이 있다면
 					oldFile.delete();  //파일 삭제
 				}//if end
 				//새 파일 저장
-				img.transferTo(new File(path+"\\"+filename)); //경로+파일이름을 File로 저장
+				img.transferTo(new File(path+"/"+filename)); //경로+파일이름을 File로 저장
 															  //역슬래시 두 개중 첫번째는 특수문자 명령어기능 예시) \t
 			} catch (Exception e) {
 				e.printStackTrace(); //에러메세지 출력
@@ -137,8 +137,8 @@ public class ProductCont {
 		}else { //파일을 수정하지 않았다면
 			String product_code=map.get("product_code").toString();
 			Map<String, Object> product=productDao.detail(product_code);
-			filename=product.get("FILENAME").toString();
-			filesize=Long.valueOf(product.get("FILESIZE").toString());
+			filename=product.get("filename").toString();
+			filesize=Long.valueOf(product.get("filesize").toString());
 		}//if end
 		map.put("filename", filename);
 		map.put("filesize", filesize);
@@ -153,7 +153,7 @@ public class ProductCont {
 		if(filename != null && !filename.equals("-")) { //삭제할 파일이 있다면
 			ServletContext application=req.getSession().getServletContext();
 			String path=application.getRealPath("/storage");
-			File file=new File(path+"\\"+filename);
+			File file=new File(path+"/"+filename);
 			if(file.exists()) { //실제 파일이 있다면
 				file.delete();  //파일 삭제
 			}//if end

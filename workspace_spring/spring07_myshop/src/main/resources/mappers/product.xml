@@ -13,10 +13,19 @@
 		ORDER BY product_name
 	</select>
 
+	<!-- OracleDB -->
+	<!-- 
 	<insert id="insert" parameterType="java.util.Map">
 		INSERT INTO product(product_code, product_name, description, price, filename, filesize )
 		VALUES(product_seq.nextval, #{product_name}, #{description}, #{price}, #{filename}, #{filesize})
 	</insert>
+	-->
+	<!-- MariaDB -->
+	<insert id="insert" parameterType="java.util.Map">
+		INSERT INTO product(product_code, product_name, description, price, filename, filesize )
+		VALUES((select ifnull(max(product_code),0)+1 from product as TB), #{product_name}, #{description}, #{price}, #{filename}, #{filesize})
+	</insert>
+
 
 	<select id="search" resultType="java.util.Map" parameterType="String">
 		SELECT product_code, product_name, description, price, filename, filesize
