@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Dec 13 16:21:58 KST 2022
+maven-shared-utils-0.7.jar>apache=
+maven-shared-utils-0.7.jar>central=
+maven-shared-utils-0.7.pom>apache=

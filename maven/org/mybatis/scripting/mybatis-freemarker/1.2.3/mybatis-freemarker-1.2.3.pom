@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2015-2021 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-parent</artifactId>
+    <version>33</version>
+    <relativePath />
+  </parent>
+
+  <groupId>org.mybatis.scripting</groupId>
+  <artifactId>mybatis-freemarker</artifactId>
+  <version>1.2.3</version>
+
+  <name>MyBatis FreeMarker</name>
+  <description>FreeMarker support for MyBatis</description>
+  <url>https://github.com/mybatis/freemarker-scripting</url>
+
+  <inceptionYear>2015</inceptionYear>
+
+  <contributors>
+    <contributor>
+      <name>Igor Kostromin</name>
+      <email>elwood.su@gmail.com</email>
+    </contributor>
+    <contributor>
+      <name>Eduardo Macarron</name>
+      <email>eduardo.macarron@gmail.com</email>
+    </contributor>
+    <contributor>
+      <name>Frank Martinez</name>
+      <email>mnesarco@gmail.com</email>
+    </contributor>
+  </contributors>
+
+  <scm>
+    <url>https://github.com/mybatis/freemarker-scripting</url>
+    <connection>scm:git:ssh://github.com/mybatis/freemarker-scripting.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/mybatis/freemarker-scripting.git</developerConnection>
+    <tag>mybatis-freemarker-1.2.3</tag>
+  </scm>
+  <issueManagement>
+    <system>GitHub Issue Management</system>
+    <url>https://github.com/mybatis/freemarker-scripting/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>Travis CI</system>
+    <url>https://travis-ci.org/mybatis/freemarker-scripting</url>
+  </ciManagement>
+  <distributionManagement>
+    <site>
+      <id>gh-pages</id>
+      <name>Mybatis GitHub Pages</name>
+      <url>git:ssh://git@github.com/mybatis/freemarker-scripting.git?gh-pages#</url>
+    </site>
+  </distributionManagement>
+
+  <properties>
+    <clirr.comparisonVersion>1.1.2</clirr.comparisonVersion>
+    <module.name>org.mybatis.scripting.freemarker</module.name>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.9</version>
+    </dependency>
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>2.3.31</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-text</artifactId>
+      <version>1.9</version>
+    </dependency>
+
+    <!-- TEST -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>2.5.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- Due to bug in package handling on formatter/impsort/license plugins, skip the 'DefaultPackageNameMapper' as it ends up adding duplicate headers. -->
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <configuration>
+            <excludes combine.children="append">
+              <exclude>**/DefaultPackageNameMapper.java</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code</groupId>
+          <artifactId>impsort-maven-plugin</artifactId>
+          <configuration>
+            <excludes combine.children="append">
+              <exclude>**/DefaultPackageNameMapper.java</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <configuration>
+            <excludes combine.children="append">
+              <exclude>**/DefaultPackageNameMapper.java</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
